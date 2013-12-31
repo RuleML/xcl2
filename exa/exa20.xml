@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<Corpus xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 20. (txt (title perdurant (txt ∀x∀y(∼∃t(P x y t)) (imports mereology)))) </Comment>
+  <TextConstruction>
+    <DomainRestriction>
+      <Comment>(domain 3DEntity (imports endurant))</Comment>
+      <Name>3DEntity</Name>
+      <Importation>
+        <Name>endurant</Name>
+      </Importation>
+    </DomainRestriction>
+    <DomainRestriction>
+      <Comment> (domain 4DEntity (imports perdurant))</Comment>
+      <Name>4DEntity</Name>
+      <Importation>
+        <Name>Perdurant</Name>
+      </Importation>
+    </DomainRestriction>
+    <Universal>
+      <Comment>∀x((3DEntity x) → ∃y((4DEntity y) ∧ (lifeOf y x)))</Comment>
+      <Name>
+        <type>
+          <Name>3DEntity</Name>
+        </type>
+        <symbol>x</symbol>
+      </Name>
+      <Existential>
+        <Name>
+          <type>4DEntity</type>
+          <symbol>y</symbol>
+        </Name>
+        <Atom>
+          <Name>lifeOf</Name>
+          <Name>y</Name>
+          <Name>x</Name>
+        </Atom>
+      </Existential>
+    </Universal>
+  </TextConstruction>
+
+  <TextConstruction>
+    <Comment>(txt (title endurant (txt ∀x∃t((Time t) ∧ (P x x t)) ∀x∀y((P x y) ↔ ∀t((P yyt) → (P
+      xyt))) (imports mereology))))</Comment>
+  </TextConstruction>
+
+  <TextConstruction>
+    <Comment> (txt (title mereology (txt ∀x(P xx) ∀x∀y(((P x y) ∧ (P y x)) → (= x y)) ... ∀x∀y∃z((P
+      x z) ∧ (P y z)))))</Comment>
+  </TextConstruction>
+
+  <TextConstruction>
+    <Comment> (txt (title perdurant (txt ∀x∀y(∼∃t(P x y t)) (imports mereology)))) </Comment>
+  </TextConstruction>
+
+</Corpus>

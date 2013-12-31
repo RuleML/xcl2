@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<TextConstruction xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example11. (cl:text (cl:import O3))</Comment>
+  <Importation>
+    <Name>O3</Name>    
+  </Importation>
+</TextConstruction>

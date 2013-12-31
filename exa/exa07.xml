@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<Corpus xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 7 
+    {(cl:text (P a)), (cl:text (exists (P) (P a)) )} 
+  </Comment>
+  <TextConstruction>
+    <Atom>
+      <Name>P</Name>
+      <Name>a</Name>
+    </Atom>
+  </TextConstruction>
+  <TextConstruction>
+    <Existential>
+      <Name>P</Name>
+      <Atom>
+        <Name>P</Name>
+        <Name>a</Name>
+      </Atom>
+    </Existential>
+  </TextConstruction>
+</Corpus>

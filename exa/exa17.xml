@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<TextConstruction xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 17. 
+    (txt 
+      (inDiscourse P ) 
+      (domain SomeParts (imports O8)) 
+      ∀x∀y((Ref lexive x) ↔ (x y y)) 
+      (ReflexiveP) 
+      (isAxiomatizedIn P O8) 
+    ) 
+  </Comment>
+  <InDiscourse>
+    <Name>P</Name>
+  </InDiscourse>
+  <DomainRestriction>
+    <Name>SomeParts</Name>
+    <Importation>
+      <Name>O8</Name>
+    </Importation>
+  </DomainRestriction>
+  <Universal>
+    <Name>x</Name>
+    <Name>y</Name>
+    <Biconditional>
+      <Atom>
+        <Name>Reflexive</Name>
+        <Name>x</Name>
+      </Atom>
+      <Atom>
+        <Name>x</Name>
+        <Name>y</Name>
+        <Name>y</Name>
+      </Atom>
+    </Biconditional>
+  </Universal>
+  <Atom>
+    <Name>Reflexive</Name>
+    <Name>P</Name>
+  </Atom>
+  <Atom>
+    <Name>isAxiomatizedIn</Name>
+    <Name>P</Name>
+    <Name>O1</Name>
+  </Atom>
+</TextConstruction>

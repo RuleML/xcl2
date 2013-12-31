@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<Existential xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 19. ∃W∀x∀y((W xy) ↔ (P yx)) </Comment>
+  <Name>W</Name>
+  <Universal>
+    <Name>x</Name>
+    <Name>y</Name>
+    <Biconditional>
+      <Atom>
+        <Name>W</Name>
+        <Name>x</Name>
+        <Name>y</Name>
+      </Atom>
+      <Atom>
+        <Name>P</Name>
+        <Name>y</Name>
+        <Name>x</Name>
+      </Atom>
+    </Biconditional>
+  </Universal>
+</Existential>

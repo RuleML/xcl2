@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<TextConstruction xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 4 (pseudo-CLIF). 
+    (cl:text O1 
+      (forall (x y) (if (and (P x y) (P y x)) (= x y)))
+      (forall (x y z) (if (and (P x y) (P y z)) (P x z)))
+     ) 
+  </Comment>
+  <Titling>
+    <Name>O1</Name>
+    <TextConstruction>
+      <Universal>
+        <Name>x</Name>
+        <Name>y</Name>
+        <Implication>
+          <Conjunction>
+            <Atom>
+              <Name>P</Name>
+              <Name>x</Name>
+              <Name>y</Name>
+            </Atom>
+            <Atom>
+              <Name>P</Name>
+              <Name>y</Name>
+              <Name>x</Name>
+            </Atom>
+          </Conjunction>
+          <Equation>
+            <Name>x</Name>
+            <Name>y</Name>
+          </Equation>
+        </Implication>
+      </Universal>
+      <Universal>
+        <Name>x</Name>
+        <Name>y</Name>
+        <Name>z</Name>
+        <Implication>
+          <Conjunction>
+            <Atom>
+              <Name>P</Name>
+              <Name>x</Name>
+              <Name>y</Name>
+            </Atom>
+            <Atom>
+              <Name>P</Name>
+              <Name>y</Name>
+              <Name>z</Name>
+            </Atom>            
+          </Conjunction>
+          <Atom>
+            <Name>P</Name>
+            <Name>x</Name>
+            <Name>z</Name>
+          </Atom>            
+        </Implication>
+      </Universal>
+    </TextConstruction>
+  </Titling>
+</TextConstruction>

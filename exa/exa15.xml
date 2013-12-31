@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<TextConstruction xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 15.
+    (txt 
+      (outDiscourse Male Female) 
+      ∀x(= x LonesomeGeorge) 
+      (Male LonesomeGeorge) 
+      ∼∃x((Female x) ∧ (Male x))
+    ) 
+  </Comment>
+  <OutDiscourse>
+    <Name>Male</Name>
+    <Name>Female</Name>
+  </OutDiscourse>
+  <Universal>
+    <Name>x</Name>
+    <Equation>
+      <Name>x</Name>
+      <Name>LonesomeGeorge</Name>
+    </Equation>
+  </Universal>
+  <Atom>
+    <Name>Male</Name>
+    <Name>LonesomeGeorge</Name>
+  </Atom>
+  <Negation>
+    <Existential>
+      <Name>x</Name>
+      <Conjunction>
+        <Atom>
+          <Name>Female</Name>
+          <Name>x</Name>
+        </Atom>
+        <Atom>
+          <Name>Male</Name>
+          <Name>x</Name>
+        </Atom>
+      </Conjunction>
+    </Existential>
+  </Negation>  
+</TextConstruction>

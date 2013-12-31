@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<TextConstruction xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example13. ( if (P a) ( exists (x) (P x)))</Comment>
+  <Implication>
+    <Atom>
+      <Name>P</Name>
+      <Name>a</Name>
+    </Atom>
+    <Existential>
+      <Name>x</Name>
+      <Atom>
+        <Name>P</Name>
+        <Name>x</Name>
+      </Atom>
+    </Existential>
+  </Implication>
+</TextConstruction>

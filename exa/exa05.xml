@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<TextConstruction xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 5 (CLIF).
+    (cl:text
+      (cl:import O1)
+      (forall (x y) (iff (Reflexive x)(x y y))) 
+      ( Reflexive P)
+      ( isAxiomatizedIn P O1 )
+     )
+  </Comment>
+  <Importation>
+    <Name>O1</Name>    
+  </Importation>
+  <Universal>
+    <Name>x</Name>
+    <Name>y</Name>
+    <Biconditional>
+      <Atom>
+        <Name>Reflexive</Name>
+        <Name>x</Name>
+      </Atom>
+      <Atom>
+        <Name>x</Name>
+        <Name>y</Name>
+        <Name>y</Name>
+      </Atom>
+    </Biconditional>
+  </Universal>
+  <Atom>
+    <Name>Reflexive</Name>
+    <Name>P</Name>
+  </Atom>
+  <Atom>
+    <Name>isAxiomatizedIn</Name>
+    <Name>P</Name>
+    <Name>O1</Name>
+  </Atom>
+</TextConstruction>
