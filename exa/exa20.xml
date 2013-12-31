@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../relaxng/xcl2.rnc"?>
 <Corpus xmlns="http://iso-commonlogic.org/xcl2">
-  <Comment>Example 20. (txt (title perdurant (txt ∀x∀y(∼∃t(P x y t)) (imports mereology)))) </Comment>
+  <Comment>Example 20.</Comment>
+  
   <TextConstruction>
     <DomainRestriction>
       <Comment>(domain 3DEntity (imports endurant))</Comment>
@@ -40,17 +41,156 @@
   </TextConstruction>
 
   <TextConstruction>
-    <Comment>(txt (title endurant (txt ∀x∃t((Time t) ∧ (P x x t)) ∀x∀y((P x y) ↔ ∀t((P yyt) → (P
-      xyt))) (imports mereology))))</Comment>
+    <Titling>
+      <Comment>(title endurant (txt ...)</Comment>
+      <Name>endurant</Name>
+      <TextConstruction>
+        <Universal>
+          <Comment>∀x∃t((Time t) ∧ (P x x t))</Comment>
+          <Name>x</Name>
+          <Existential>
+            <Name>
+              <type>
+                <Name>Time</Name>
+              </type>
+              <symbol>t</symbol>
+            </Name>
+            <Atom>
+              <Name>P</Name>
+              <Name>x</Name>
+              <Name>x</Name>
+              <Name>t</Name>
+            </Atom>
+          </Existential>
+        </Universal>
+        <Universal>
+          <Comment>∀x∀y((P x y) ↔ ∀t((P y y t) → (P x y t))</Comment>
+          <Name>x</Name>
+          <Name>y</Name>
+          <Biconditional>
+            <Atom>
+              <Name>P</Name>
+              <Name>x</Name>
+              <Name>y</Name>
+            </Atom>
+            <Universal>
+              <Name>t</Name>
+              <Implication>
+                <Atom>
+                  <Name>P</Name>
+                  <Name>y</Name>
+                  <Name>y</Name>
+                  <Name>t</Name>
+                </Atom>
+                <Atom>
+                  <Name>P</Name>
+                  <Name>x</Name>
+                  <Name>y</Name>
+                  <Name>t</Name>
+                </Atom>
+              </Implication>
+            </Universal>
+          </Biconditional>
+        </Universal>
+        <Importation>
+          <Comment>(imports mereology)</Comment>
+          <Name>mereology</Name>
+        </Importation>
+      </TextConstruction>
+    </Titling>
   </TextConstruction>
 
   <TextConstruction>
-    <Comment> (txt (title mereology (txt ∀x(P xx) ∀x∀y(((P x y) ∧ (P y x)) → (= x y)) ... ∀x∀y∃z((P
-      x z) ∧ (P y z)))))</Comment>
+    <Comment> (txt )</Comment>
+    <Titling>
+      <Comment>(title mereology )</Comment>
+      <Name>mereology</Name>
+      <TextConstruction>
+        <Comment>(txt ... )</Comment>
+        <Universal>
+          <Comment>∀x(P x x)</Comment>
+          <Name>x</Name>
+          <Atom>
+            <Name>P</Name>
+            <Name>x</Name>
+            <Name>x</Name>
+          </Atom>
+        </Universal>
+        <Universal>
+          <Comment>∀x∀y(((P x y) ∧ (P y x)) → (= x y))</Comment>
+          <Name>x</Name>
+          <Name>y</Name>
+          <Implication>
+            <Conjunction>
+              <Atom>
+                <Name>P</Name>
+                <Name>x</Name>
+                <Name>y</Name>
+              </Atom>
+              <Atom>
+                <Name>P</Name>
+                <Name>y</Name>
+                <Name>x</Name>
+              </Atom>
+            </Conjunction>
+            <Equation>
+              <Name>x</Name>
+              <Name>y</Name>
+            </Equation>
+          </Implication>
+        </Universal>
+
+        <Universal>
+          <Comment>∀x∀y∃z((P x z) ∧ (P y z))</Comment>
+          <Name>x</Name>
+          <Name>y</Name>
+          <Existential>
+            <Name>z</Name>
+            <Conjunction>
+              <Atom>
+                <Name>P</Name>
+                <Name>x</Name>
+                <Name>z</Name>
+              </Atom>
+              <Atom>
+                <Name>P</Name>
+                <Name>y</Name>
+                <Name>z</Name>
+              </Atom>
+            </Conjunction>
+          </Existential>
+        </Universal>
+      </TextConstruction>
+    </Titling>
   </TextConstruction>
 
   <TextConstruction>
-    <Comment> (txt (title perdurant (txt ∀x∀y(∼∃t(P x y t)) (imports mereology)))) </Comment>
+    <Comment> (txt ...) </Comment>
+    <Titling>
+      <Comment>(title perdurant ...)</Comment>
+      <Name>perdurant</Name>
+      <TextConstruction>
+        <Universal>
+          <Comment>∀x∀y(∼∃t(P x y t))</Comment>
+          <Name>x</Name>
+          <Name>y</Name>
+          <Negation>
+            <Existential>
+              <Name>t</Name>
+              <Atom>
+                <Name>P</Name>
+                <Name>x</Name>
+                <Name>y</Name>
+                <Name>y</Name>
+              </Atom>
+            </Existential>
+          </Negation>
+        </Universal>
+        <Importation>
+          <Comment>(imports mereology)</Comment>
+          <Name>mereology</Name>
+        </Importation>
+      </TextConstruction>
+    </Titling>
   </TextConstruction>
-
 </Corpus>
