@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 16. 
+    (txt 
+      (title O8 
+        (txt
+          (outDiscourse P ) 
+          ∀x∀y(((P x y) ∧ (P y x)) → (= x y))
+          ∀x∀y∀z(((P x y) ∧ (P y z)) → (P x z))
+        )
+      ) 
+     ) 
+  </Comment>
+  <Titling>
+    <Name>O8</Name>
+    <Construct>
+      <OutDiscourse>
+        <Name>P</Name>
+      </OutDiscourse>
+      <Forall>
+        <Name>x</Name>
+        <Name>y</Name>
+        <Implies>
+          <And>
+            <Atom>
+              <Name>P</Name>
+              <Name>x</Name>
+              <Name>y</Name>
+            </Atom>
+            <Atom>
+              <Name>P</Name>
+              <Name>y</Name>
+              <Name>x</Name>
+            </Atom>
+          </And>
+          <Equal>
+            <Name>x</Name>
+            <Name>y</Name>
+          </Equal>
+        </Implies>
+      </Forall>
+      <Forall>
+        <Name>x</Name>
+        <Name>y</Name>
+        <Name>z</Name>
+        <Implies>
+          <And>
+            <Atom>
+              <Name>P</Name>
+              <Name>x</Name>
+              <Name>y</Name>
+            </Atom>
+            <Atom>
+              <Name>P</Name>
+              <Name>y</Name>
+              <Name>z</Name>
+            </Atom>
+          </And>
+          <Atom>
+            <Name>P</Name>
+            <Name>x</Name>
+            <Name>z</Name>
+          </Atom>
+        </Implies>
+      </Forall>
+    </Construct>
+  </Titling>
+</Construct>

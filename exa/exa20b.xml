@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Corpus xmlns="http://iso-commonlogic.org/xcl2"
+  xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance">
+  <Comment>Example 20.</Comment>
+  
+  <Construct>
+    <Restrict>
+      <Comment>(domain 3DEntity (imports endurant))</Comment>
+      <Name>3DEntity</Name>
+      <Import>
+        <Name>endurant</Name>
+      </Import>
+    </Restrict>
+    <Restrict>
+      <Comment> (domain 4DEntity (imports perdurant))</Comment>
+      <Name>4DEntity</Name>
+      <Import>
+        <Name>perdurant</Name>
+      </Import>
+    </Restrict>
+    <Forall>
+      <Comment>∀x((3DEntity x) → ∃y((4DEntity y) ∧ (lifeOf y x)))</Comment>
+      <Name>
+        <type>
+          <Name>3DEntity</Name>
+        </type>
+        <symbol>3D thing</symbol>
+      </Name>
+      <Exist>
+        <Name>
+          <type>4DEntity</type>
+          <symbol>4D thing</symbol>
+        </Name>
+        <Atom>
+          <Name>lifeOf</Name>
+          <Name>4D thing</Name>
+          <Name>3D thing</Name>
+        </Atom>
+      </Exist>
+    </Forall>
+  </Construct>
+
+  <Construct>
+    <Titling>
+      <Comment>(Titling endurant (txt ...)</Comment>
+      <Name>endurant</Name>
+      <Construct>
+        <Forall>
+          <Comment>∀x∃t((Time t) ∧ (P x x t))</Comment>
+          <Name>endurant thing</Name>
+          <Exist>
+            <Name>
+              <type>
+                <Name>Time</Name>
+              </type>
+              <symbol>time</symbol>
+            </Name>
+            <Atom>
+              <Name>Parthood</Name>
+              <Name>endurant thing</Name>
+              <Name>endurant thing</Name>
+              <Name>time</Name>
+            </Atom>
+          </Exist>
+        </Forall>
+        <Forall>
+          <Comment>∀x∀y((P x y) ↔ ∀t((P y y t) → (P x y t))</Comment>
+          <Name>endurant part</Name>
+          <Name>endurant whole</Name>
+          <Equivalent>
+            <Atom>
+              <Name>Parthood</Name>
+              <Name>endurant part</Name>
+              <Name>endurant whole</Name>
+            </Atom>
+            <Forall>
+              <Name>time</Name>
+              <Implies>
+                <Atom>
+                  <Name>Parthood</Name>
+                  <Name>endurant whole</Name>
+                  <Name>endurant whole</Name>
+                  <Name>time</Name>
+                </Atom>
+                <Atom>
+                  <Name>Parthood</Name>
+                  <Name>endurant part</Name>
+                  <Name>endurant whole</Name>
+                  <Name>time</Name>
+                </Atom>
+              </Implies>
+            </Forall>
+          </Equivalent>
+        </Forall>
+        <Import>
+          <Comment>(imports mereology)</Comment>
+          <Name>mereology</Name>
+        </Import>
+      </Construct>
+    </Titling>
+  </Construct>
+
+  <Construct>
+    <Comment> (txt )</Comment>
+    <Titling>
+      <Comment>(Titling mereology )</Comment>
+      <Name>mereology</Name>
+      <Construct>
+        <Comment>(txt ... )</Comment>
+        <Forall>
+          <Comment>∀x(P x x)</Comment>
+          <Name>thing</Name>
+          <Atom>
+            <Name>Parthood</Name>
+            <Name>thing</Name>
+            <Name>thing</Name>
+          </Atom>
+        </Forall>
+        <Forall>
+          <Comment>∀x∀y(((P x y) ∧ (P y x)) → (= x y))</Comment>
+          <Name>thing1</Name>
+          <Name>thing2</Name>
+          <Implies>
+            <And>
+              <Atom>
+                <Name>Parthood</Name>
+                <Name>thing1</Name>
+                <Name>thing2</Name>
+              </Atom>
+              <Atom>
+                <Name>Parthood</Name>
+                <Name>thing2</Name>
+                <Name>thing1</Name>
+              </Atom>
+            </And>
+            <Equal>
+              <Name>thing1</Name>
+              <Name>thing2</Name>
+            </Equal>
+          </Implies>
+        </Forall>
+
+        <Forall>
+          <Comment>∀x∀y∃z((P x z) ∧ (P y z))</Comment>
+          <Name>part1</Name>
+          <Name>part2</Name>
+          <Exist>
+            <Name>whole</Name>
+            <And>
+              <Atom>
+                <Name>Parthood</Name>
+                <Name>part1</Name>
+                <Name>whole</Name>
+              </Atom>
+              <Atom>
+                <Name>Parthood</Name>
+                <Name>part2</Name>
+                <Name>whole</Name>
+              </Atom>
+            </And>
+          </Exist>
+        </Forall>
+      </Construct>
+    </Titling>
+  </Construct>
+
+  <Construct>
+    <Comment> (txt ...) </Comment>
+    <Titling>
+      <Comment>(Titling perdurant ...)</Comment>
+      <Name>perdurant</Name>
+      <Construct>
+        <Forall>
+          <Comment 
+            xmlns:ex = "http://example.org"
+            xsi:schemaLocation = "http://example.org ../xsd/myCommentContent.xsd">
+            <Comment>No perdurant thing has temporal parts.</Comment>
+            <ex:content>∀x∀y(∼∃t(P x y t))</ex:content>
+            <ex:date xsi:type="xsd:dateTime">2012-09-30</ex:date>
+          </Comment>
+          <Name>perdurant part</Name>
+          <Name>perdurant whole</Name>
+          <Not>
+            <Exist>
+              <Name>time</Name>
+              <Atom>
+                <Name>Parthood</Name>
+                <Name>perdurant part</Name>
+                <Name>perdurant whole</Name>
+                <Name>time</Name>
+              </Atom>
+            </Exist>
+          </Not>
+        </Forall>
+        <Import>
+          <Comment>(imports mereology)</Comment>
+          <Name>mereology</Name>
+        </Import>
+      </Construct>
+    </Titling>
+  </Construct>
+</Corpus>
