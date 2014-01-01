@@ -44,7 +44,7 @@ sentence =
   | Implies
   | Equivalent
   | Forall
-  | Exist
+  | Exists
 
 ##    -Atomic Formulas 
 Atom = element Atom { Atom.type }
@@ -67,7 +67,7 @@ Equivalent.type = common, sentence, sentence
 
 ##    -Quantifications 
 Forall = element Forall { Quantifier.type }
-Exist = element Exist { Quantifier.type }
+Exists = element Exists { Quantifier.type }
 Quantifier.type = common, Name+, sentence
 
 ## Term Sequences 

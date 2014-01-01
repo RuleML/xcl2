@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../relaxng/xcl2b.rnc"?>
-<Exist xmlns="http://iso-commonlogic.org/xcl2">
+<Exists xmlns="http://iso-commonlogic.org/xcl2">
   <Comment>Example 19. ∃W∀x∀y((W xy) ↔ (P yx)) </Comment>
   <Name>W</Name>
   <Forall>
@@ -19,4 +19,4 @@
       </Atom>
     </Equivalent>
   </Forall>
-</Exist>
+</Exists>

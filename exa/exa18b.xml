@@ -2,7 +2,7 @@
 <?xml-model href="../relaxng/xcl2b.rnc"?>
 <Construct xmlns="http://iso-commonlogic.org/xcl2">
   <Comment>Example 18 
-    (txt (Out W P ) (imports O8)
+    (txt (outDiscourse W P ) (imports O8)
     ∀x∀y((W x y) ↔ (P y x)))
     )
   </Comment>

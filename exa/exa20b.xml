@@ -27,7 +27,7 @@
         </type>
         <symbol>3D thing</symbol>
       </Name>
-      <Exist>
+      <Exists>
         <Name>
           <type>4DEntity</type>
           <symbol>4D thing</symbol>
@@ -37,7 +37,7 @@
           <Name>4D thing</Name>
           <Name>3D thing</Name>
         </Atom>
-      </Exist>
+      </Exists>
     </Forall>
   </Construct>
 
@@ -49,7 +49,7 @@
         <Forall>
           <Comment>∀x∃t((Time t) ∧ (P x x t))</Comment>
           <Name>endurant thing</Name>
-          <Exist>
+          <Exists>
             <Name>
               <type>
                 <Name>Time</Name>
@@ -62,7 +62,7 @@
               <Name>endurant thing</Name>
               <Name>time</Name>
             </Atom>
-          </Exist>
+          </Exists>
         </Forall>
         <Forall>
           <Comment>∀x∀y((P x y) ↔ ∀t((P y y t) → (P x y t))</Comment>
@@ -145,7 +145,7 @@
           <Comment>∀x∀y∃z((P x z) ∧ (P y z))</Comment>
           <Name>part1</Name>
           <Name>part2</Name>
-          <Exist>
+          <Exists>
             <Name>whole</Name>
             <And>
               <Atom>
@@ -159,7 +159,7 @@
                 <Name>whole</Name>
               </Atom>
             </And>
-          </Exist>
+          </Exists>
         </Forall>
       </Construct>
     </Titling>
@@ -182,7 +182,7 @@
           <Name>perdurant part</Name>
           <Name>perdurant whole</Name>
           <Not>
-            <Exist>
+            <Exists>
               <Name>time</Name>
               <Atom>
                 <Name>Parthood</Name>
@@ -190,7 +190,7 @@
                 <Name>perdurant whole</Name>
                 <Name>time</Name>
               </Atom>
-            </Exist>
+            </Exists>
           </Not>
         </Forall>
         <Import>

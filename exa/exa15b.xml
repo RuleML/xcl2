@@ -9,10 +9,10 @@
       ∼∃x((Female x) ∧ (Male x))
     ) 
   </Comment>
-  <OutDiscourse>
+  <Out>
     <Name>Male</Name>
     <Name>Female</Name>
-  </OutDiscourse>
+  </Out>
   <Forall>
     <Name>x</Name>
     <Equal>
@@ -25,7 +25,7 @@
     <Name>LonesomeGeorge</Name>
   </Atom>
   <Not>
-    <Exist>
+    <Exists>
       <Name>x</Name>
       <And>
         <Atom>
@@ -37,6 +37,6 @@
           <Name>x</Name>
         </Atom>
       </And>
-    </Exist>
+    </Exists>
   </Not>  
 </Construct>

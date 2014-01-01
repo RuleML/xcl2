@@ -15,9 +15,9 @@
   <Titling>
     <Name>O8</Name>
     <Construct>
-      <OutDiscourse>
+      <Out>
         <Name>P</Name>
-      </OutDiscourse>
+      </Out>
       <Forall>
         <Name>x</Name>
         <Name>y</Name>
