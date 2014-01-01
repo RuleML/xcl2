@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 6 (CLIF).
+    (cl:text
+      (cl:import O1)
+      (forall (x y) (iff (whole_of x y) (P y x) ))
+    )
+  </Comment>
+  <Import>
+    <Name>O1</Name>    
+  </Import>
+  <Forall>
+    <Name>x</Name>
+    <Name>y</Name>
+    <Equivalent>
+      <Atom>
+        <Name>whole_of</Name>
+        <Name>x</Name>
+        <Name>y</Name>
+      </Atom>
+      <Atom>
+        <Name>P</Name>
+        <Name>y</Name>
+        <Name>x</Name>
+      </Atom>
+    </Equivalent>
+  </Forall>
+</Construct>

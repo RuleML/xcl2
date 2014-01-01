@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example2. (exists (a) (forall(x) ((a x) a)))</Comment>
+  <Exists>
+    <Name>a</Name>
+    <Forall>
+      <Name>x</Name>
+      <Atom>
+        <Apply>
+          <Name>a</Name>
+          <Name>x</Name>
+        </Apply>
+        <Name>a</Name>
+      </Atom>
+    </Forall>
+  </Exists>
+</Construct>
+
