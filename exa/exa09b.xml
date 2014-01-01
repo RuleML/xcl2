@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <prefix pre="xsd" cri="http://www.w3.org/2001/XMLSchema"/>
+  <Comment>Example 9.
+    (cl:module PositiveIntegers (not (π &lt; 4)))
+  </Comment>
+  <Restrict>
+    <Name>PositiveIntegers</Name>
+    <Construct>
+        <Not>
+          <Atom>
+            <Name>π</Name>
+            <Name>&lt;</Name>
+            <Data datatype="xsd:decimal">4</Data>
+          </Atom>
+        </Not>
+    </Construct>
+  </Restrict>
+</Construct>

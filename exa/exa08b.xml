@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <prefix pre="xsd" cri="http://www.w3.org/2001/XMLSchema"/>
+  <Comment>Example 8 
+    (cl:text
+      (forall (x) (exists (y) (y &lt; x))) 
+      (cl:module PositiveIntegers
+      (forall (x) (not (x &lt; 1)))
+    )  
+  </Comment>
+  <Forall>
+    <Name>x</Name>
+    <Exists>
+      <Name>y</Name>
+      <Atom>
+        <Name>y</Name>
+        <Name>&lt;</Name>
+        <Name>x</Name>
+      </Atom>
+    </Exists>
+  </Forall>
+  <Restrict>
+    <Name>PositiveIntegers</Name>
+    <Construct>
+      <Forall>
+        <Name>x</Name>
+        <Not>
+          <Atom>
+            <Name>x</Name>
+            <Name>&lt;</Name>
+            <Data datatype="xsd:decimal">1</Data>
+          </Atom>
+        </Not>
+      </Forall>
+    </Construct>
+  </Restrict>
+  <Restrict>
+    <Name>PositiveIntegers</Name>
+    <Construct>
+      <Forall>
+        <Name>x</Name>
+        <Not>
+          <Atom>
+            <Name>x</Name>
+            <Name>&lt;</Name>
+            <Apply>
+              <Name cri="xsd:decimal"/>
+              <Data>1</Data>
+            </Apply>
+          </Atom>
+        </Not>
+      </Forall>
+    </Construct>
+  </Restrict>
+</Construct>
