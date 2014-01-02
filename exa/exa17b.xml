@@ -5,7 +5,7 @@
     (txt 
       (In P ) 
       (domain SomeParts (imports O8)) 
-      ∀x∀y((Ref lexive x) ↔ (x y y)) 
+      ∀x∀y((Reflexive x) ↔ (x y y)) 
       (ReflexiveP) 
       (isAxiomatizedIn P O8) 
     ) 

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Import xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example24. (imports O9 )</Comment>
+  <Name>O9</Name>
+</Import>

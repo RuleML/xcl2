@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 29.</Comment>
+  <Titling>
+    <Comment>(title t1 (txt (Loves john mary)))</Comment>
+    <Name>t1</Name>
+    <Construct>
+      <Atom>
+        <Name>Loves</Name>
+        <Name>john</Name>
+        <Name>mary</Name>
+      </Atom>
+    </Construct>
+  </Titling>
+  <Titling>
+    <Comment>(title t2 (txt (Loves mary bill)))</Comment>
+    <Name>t2</Name>
+    <Construct>
+      <Atom>
+        <Name>Loves</Name>
+        <Name>mary</Name>
+        <Name>bill</Name>
+      </Atom>
+    </Construct>
+  </Titling>
+  <Equal>
+    <Comment>(= t1 t2)</Comment>
+    <Name>t1</Name>
+    <Name>t2</Name>
+  </Equal>
+</Construct>

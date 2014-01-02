@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 28. (txt (imports x) ((P a) → (∃x(P x))))</Comment>
+  <Import>
+    <Name>x</Name>
+  </Import>
+  <Implies>
+    <Atom>
+      <Name>P</Name>
+      <Name>a</Name>
+    </Atom>
+    <Exists>
+      <Name>x</Name>
+      <Atom>
+        <Name>P</Name>
+        <Name>x</Name>
+      </Atom>
+    </Exists>
+  </Implies>
+</Construct>

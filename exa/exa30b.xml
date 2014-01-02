@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 30.</Comment>
+  <Import>
+    <Comment>(imports ontA )</Comment>
+    <Name>ontA</Name>
+  </Import>
+  <Titling>
+    <Comment>(title ontA (imports ontB ))</Comment>
+    <Name>ont_A</Name>
+    <Import>
+      <Name>ont_B</Name>
+    </Import>
+  </Titling>
+  <Titling>
+    <Comment>(titleontB (importsontA))</Comment>
+    <Name>ont_B</Name>
+    <Import>
+      <Name>ont_A</Name>
+    </Import>
+  </Titling>
+</Construct>

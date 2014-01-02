@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <Comment>Example 27.
+    (txt (title O10 (txt
+    (authorOf john O10 ))))</Comment>
+  <Titling>
+    <Name>O10</Name>
+    <Construct>
+      <Atom>
+        <Name>authorOf</Name>
+        <Name>john</Name>
+        <Name>O10</Name>
+      </Atom>
+    </Construct>
+  </Titling>
+</Construct>
