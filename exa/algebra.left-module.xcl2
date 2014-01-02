@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../relaxng/xcl2b.rnc"?>
 <Construct xmlns="http://iso-commonlogic.org/xcl2">
-  <prefix pre="" cri="http://stl.mie.utoronto.ca/Colore/algebra/module"/>
-  <prefix pre="rng" cri="http://stl.mie.utoronto.ca/Colore/ringoids/ring"/>
-  <prefix pre="abg" cri="http://stl.mie.utoronto.ca/Colore/magma/abelian-group"/>
+  <prefix pre="lmod" cri="http://ruleml.org/xcl2/exa/algebra/left-module"/>
+  <prefix pre="rng" cri="http://ruleml.org/xcl2/exa/ringoids/ring"/>
+  <prefix pre="abg" cri="http://ruleml.org/xcl2/exa/magma/abelian-group"/>
   <Comment>
-    <cl-module xmlns:algebra="http://stl.mie.utoronto.ca/Colore/algebra"
+    <cl-module 
       xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://stl.mie.utoronto.ca/ColoreSchema">
       <head>
         <version>1.0</version>
         <date>2014-01-01</date>
-        <description>Axioms for Modules</description>
+        <description>Axioms for Left-Modules</description>
         <keyword>algebra</keyword>
         <keyword>module</keyword>
         <source/>
-        <author>Michael Gruninger</author>
         <author>Tara Athan</author>
         <parentOntology/>
       </head>
@@ -22,13 +21,13 @@
     </cl-module>
     <clif>
       (txt 
-        (prefix '' 'http://stl.mie.utoronto.ca/Colore/algebra/module')
-        (prefix 'rng' 'http://stl.mie.utoronto.ca/Colore/ringoids/ring')
-        (prefix 'abg' 'http://stl.mie.utoronto.ca/Colore/magma/abelian-group')
-        (ttl ":.xcl2" 
+        (prefix 'lmod' 'http://ruleml.org/xcl2/exa/algebra/module')
+        (prefix 'rng' 'http://ruleml.org/xcl2/exa/ringoids/ring')
+        (prefix 'abg' 'http://ruleml.org/xcl2/exa/magma/abelian-group')
+        (ttl "lmod:.xcl2" 
           (txt (imports "rng:.xcl2") (imports "abg:.xcl2") 
             (iff
-              (":#module" m)
+              ("lmod:#module" m)
               (and
                 ("abg:#abelian-group" m)
                 (exists 
@@ -41,12 +40,12 @@
                     mult-m
                   ) 
                   (and
-                    (= ring-m (":#ring" m))
+                    (= ring-m ("lmod:#ring" m))
                     (= one-r ("rng:#one" ring-m))
                     (= prod-r ("rng:#prod" ring-m))
                     (= sum-r ("rng:#sum" ring-m))
                     (= op-m ("abg:#op" m))
-                    (= mult-m (":#mult" m))
+                    (= mult-m ("lmod:#mult" m))
                     (forall ((r ring-m) (x m) (y m)) 
                       (= 
                         (mult-m r (op-m x y)) 
@@ -73,7 +72,7 @@
     </clif>
   </Comment>
   <Titling>
-    <Comment>(ttl ":.xcl2" ...)</Comment>
+    <Comment>(ttl "lmod:.xcl2" ...)</Comment>
     <Name cri=":.xcl2"/>
     <Construct>
       <Comment>(txt (imports "rng:.xcl2") (imports "abg:.xcl2") ...)</Comment>
@@ -86,8 +85,8 @@
       <Equivalent>
         <Comment>(iff ...)</Comment>
         <Atom>
-          <Comment>(":#module" m)</Comment>
-          <Name cri=":#module"/>
+          <Comment>("lmod:#module" m)</Comment>
+          <Name cri="lmod:#module"/>
           <Name>m</Name>
         </Atom>
         <And>
@@ -126,10 +125,10 @@
             <And>
               <Comment>(and ...)</Comment>
               <Equal>
-                <Comment>(= ring-m (":#ring" m))</Comment>
+                <Comment>(= ring-m ("lmod:#ring" m))</Comment>
                 <Name>ring-m</Name>
                 <Apply>
-                  <Name cri=":#ring"/>
+                  <Name cri="lmod:#ring"/>
                   <Name>m</Name>
                 </Apply>
               </Equal>
@@ -166,10 +165,10 @@
                 </Apply>
               </Equal>
               <Equal>
-                <Comment>(= mult-m (":#mult" m))</Comment>
+                <Comment>(= mult-m ("lmod:#mult" m))</Comment>
                 <Name>mult-m</Name>
                 <Apply>
-                  <Name cri=":#mult"/>
+                  <Name cri="lmod:#mult"/>
                   <Name>m</Name>
                 </Apply>
               </Equal>
