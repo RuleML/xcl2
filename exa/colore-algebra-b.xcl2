@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <prefix pre="" cri="http://stl.mie.utoronto.ca/Colore/algebra/module"/>
+  <prefix pre="rng" cri="http://stl.mie.utoronto.ca/Colore/ringoids/ring"/>
+  <prefix pre="abg" cri="http://stl.mie.utoronto.ca/Colore/magma/abelian-group"/>
+  <Comment>
+    <cl-module xmlns:algebra="http://stl.mie.utoronto.ca/Colore/algebra"
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://stl.mie.utoronto.ca/ColoreSchema">
+      <head>
+        <version>1.0</version>
+        <date>2014-01-01</date>
+        <description>Axioms for Modules</description>
+        <keyword>algebra</keyword>
+        <keyword>module</keyword>
+        <source/>
+        <author>Michael Gruninger</author>
+        <author>Tara Athan</author>
+        <parentOntology/>
+      </head>
+      <additionalInformation/>
+    </cl-module>
+    <clif>
+      (txt 
+        (prefix '' 'http://stl.mie.utoronto.ca/Colore/algebra/module')
+        (prefix 'rng' 'http://stl.mie.utoronto.ca/Colore/ringoids/ring')
+        (prefix 'abg' 'http://stl.mie.utoronto.ca/Colore/magma/abelian-group')
+        (ttl ":.xcl2" 
+          (txt (imports "rng:.xcl2") (imports "abg:.xcl2") 
+            (iff
+              (":#module" m)
+              (and
+                ("abg:#abelian-group" m)
+                (exists 
+                  (
+                    (ring-m "rng:#ring")
+                    (one-r ring-m)
+                    prod-r
+                    sum-r
+                    op-m
+                    mult-m
+                  ) 
+                  (and
+                    (= ring-m (":#ring" m))
+                    (= one-r ("rng:#one" ring-m))
+                    (= prod-r ("rng:#prod" ring-m))
+                    (= sum-r ("rng:#sum" ring-m))
+                    (= op-m ("abg:#op" m))
+                    (= mult-m (":#mult" m))
+                    (forall ((r ring-m) (x m) (y m)) 
+                      (= 
+                        (mult-m r (op-m x y)) 
+                        (op-m (mult-m r x) (mult-m r y))
+                    ) )
+                    (forall ((r ring-m) (s ring-m) (x m)) 
+                      (= 
+                        (mult-m (sum-r r s) x) 
+                        (op-m (mult-m r x) (mult-m s x))
+                    ) )
+                    (forall ((r ring-m) (s ring-m) (x m)) 
+                      (= 
+                        (mult-m (prod-r r s) x) 
+                        (mult-m r (mult-m s x))
+                    ) )
+                    (forall ((x m)) (= x (mult-m one-r x))) 
+                  )
+                )
+              )
+            )
+          )
+        )
+      )  
+    </clif>
+  </Comment>
+  <Titling>
+    <Comment>(ttl ":.xcl2" ...)</Comment>
+    <Name cri=":.xcl2"/>
+    <Construct>
+      <Comment>(txt (imports "rng:.xcl2") (imports "abg:.xcl2") ...)</Comment>
+      <Import>
+        <Name cri="rng:.xcl2"/>
+      </Import>
+      <Import>
+        <Name cri="abg:.xcl2"/>
+      </Import>
+      <Equivalent>
+        <Comment>(iff ...)</Comment>
+        <Atom>
+          <Comment>(":#module" m)</Comment>
+          <Name cri=":#module"/>
+          <Name>m</Name>
+        </Atom>
+        <And>
+          <Comment>(and ...)</Comment>
+          <Atom>
+            <Comment>("abg:#abelian-group" m)</Comment>
+            <Name cri="abg:#abelian-group"/>
+            <Name>m</Name>
+          </Atom>
+          <Exists>
+            <Comment>
+              (exists 
+                (
+                  (ring-m "rng:#ring")
+                  (one-r ring-m)
+                  prod-r
+                  sum-r
+                  op-m
+                  mult-m
+                ) 
+                ...
+              )
+            </Comment>
+            <Name>
+              <type><Name  cri="rng:#ring"/></type>
+              <symbol>ring-m</symbol>
+            </Name>
+            <Name>
+              <type><Name>ring-m</Name></type>
+              <symbol>one-r</symbol>
+            </Name>
+            <Name>prod-r</Name>
+            <Name>sum-r</Name>
+            <Name>op-m</Name>
+            <Name>mult-m</Name>
+            <And>
+              <Comment>(and ...)</Comment>
+              <Equal>
+                <Comment>(= ring-m (":#ring" m))</Comment>
+                <Name>ring-m</Name>
+                <Apply>
+                  <Name cri=":#ring"/>
+                  <Name>m</Name>
+                </Apply>
+              </Equal>
+              <Equal>
+                <Comment>(= one-r ("rng:#one" ring-m))</Comment>
+                <Name>one-r</Name>
+                <Apply>
+                  <Name cri="rng:#one"/>
+                  <Name>ring-m</Name>
+                </Apply>
+              </Equal>
+              <Equal>
+                <Comment>(= prod-r ("rng:#prod" ring-m))</Comment>
+                <Name>prod-r</Name>
+                <Apply>
+                  <Name cri="rng:#prod"/>
+                  <Name>ring-m</Name>
+                </Apply>
+              </Equal>
+              <Equal>
+                <Comment>(= sum-r ("rng:#sum" ring-m))</Comment>
+                <Name>sum-r</Name>
+                <Apply>
+                  <Name cri="rng:#sum"/>
+                  <Name>ring-m</Name>
+                </Apply>
+              </Equal>
+              <Equal>
+                <Comment>(= op-m ("abg:#op" m))</Comment>
+                <Name>op-m</Name>
+                <Apply>
+                  <Name cri="abg:#op"/>
+                  <Name>m</Name>
+                </Apply>
+              </Equal>
+              <Equal>
+                <Comment>(= mult-m (":#mult" m))</Comment>
+                <Name>mult-m</Name>
+                <Apply>
+                  <Name cri=":#mult"/>
+                  <Name>m</Name>
+                </Apply>
+              </Equal>
+              <Forall>
+                <Comment>
+                  <Comment>Left Distibutive Law of "mult" over "op"</Comment>
+                  <content> 
+                    (forall ((r ring-m) (x m) (y m)) 
+                      (= 
+                        (mult-m r (op-m x y)) 
+                        (op-m (mult-m r x) (mult-m r y))
+                    ) )
+                  </content>
+                </Comment>
+                <Name>
+                  <type>
+                    <Name>ring-m</Name>
+                  </type>
+                  <symbol>r</symbol>
+                </Name>
+                <Name>
+                  <type>
+                    <Name>m</Name>
+                  </type>
+                  <symbol>x</symbol>
+                </Name>
+                <Name>
+                  <type>
+                    <Name>m</Name>
+                  </type>
+                  <symbol>y</symbol>
+                </Name>
+                <Equal>
+                  <Apply>
+                    <Name>mult-m</Name>
+                    <Name>r</Name>
+                    <Apply>
+                      <Name>op-m</Name>
+                      <Name>x</Name>
+                      <Name>y</Name>
+                    </Apply>
+                  </Apply>
+                  <Apply>
+                    <Name>op-m</Name>
+                    <Apply>
+                      <Name>mult-m</Name>
+                      <Name>r</Name>
+                      <Name>x</Name>
+                    </Apply>
+                    <Apply>
+                      <Name>mult-m</Name>
+                      <Name>r</Name>
+                      <Name>y</Name>
+                    </Apply>
+                  </Apply>
+                </Equal>
+              </Forall>
+              <Forall>
+                <Comment>
+                  <Comment>Right Distributivity of mult over sum</Comment>
+                  <content> 
+                    (forall ((r ring-m) (s ring-m) (x m)) 
+                      (= 
+                        (mult-m (sum-r r s) x) 
+                        (op-m (mult-m r x) (mult-m s x))
+                     ) )
+                  </content>
+                </Comment>
+                <Name>
+                  <type>
+                    <Name>ring-m</Name>
+                  </type>
+                  <symbol>r</symbol>
+                </Name>
+                <Name>
+                  <type>
+                    <Name>ring-m</Name>
+                  </type>
+                  <symbol>s</symbol>
+                </Name>
+                <Name>
+                  <type>
+                    <Name>m</Name>
+                  </type>
+                  <symbol>x</symbol>
+                </Name>
+                <Equal>
+                  <Apply>
+                    <Name>mult-m</Name>
+                    <Apply>
+                      <Name>sum-r</Name>
+                      <Name>r</Name>
+                      <Name>s</Name>
+                    </Apply>
+                    <Name>x</Name>
+                  </Apply>
+                  <Apply>
+                    <Name>op-m</Name>
+                    <Apply>
+                      <Name>mult-m</Name>
+                      <Name>r</Name>
+                      <Name>x</Name>
+                    </Apply>
+                    <Apply>
+                      <Name>mult-m</Name>
+                      <Name>s</Name>
+                      <Name>x</Name>
+                    </Apply>
+                  </Apply>
+                </Equal>
+              </Forall>
+              <Forall>
+                <Comment>
+                  <Comment>Associativity of mult with prod</Comment>
+                  <content> 
+                    (forall ((r ring-m) (s ring-m) (x m)) 
+                      (= 
+                        (mult-m (prod-r r s) x) 
+                        (mult-m r (mult-m s x))
+                    ) )
+                  </content>
+                </Comment>
+                <Name>
+                  <type>
+                    <Name>ring-m</Name>
+                  </type>
+                  <symbol>r</symbol>
+                </Name>
+                <Name>
+                  <type>
+                    <Name>ring-m</Name>
+                  </type>
+                  <symbol>s</symbol>
+                </Name>
+                <Name>
+                  <type>
+                    <Name>m</Name>
+                  </type>
+                  <symbol>x</symbol>
+                </Name>
+                <Equal>
+                  <Apply>
+                    <Name>mult-m</Name>
+                    <Apply>
+                      <Name>prod-r</Name>
+                      <Name>r</Name>
+                      <Name>s</Name>
+                    </Apply>
+                    <Name>x</Name>
+                  </Apply>
+                  <Apply>
+                    <Name>mult-m</Name>
+                    <Name>r</Name>
+                    <Apply>
+                      <Name>mult-m</Name>
+                      <Name>s</Name>
+                      <Name>x</Name>
+                    </Apply>
+                  </Apply>
+                </Equal>
+              </Forall>
+              <Forall>
+                <Comment>
+                  <Comment>Left identity of mult-m is one-r.</Comment>
+                  <content> (forall ((x m)) (= x (mult-m one-r x))) </content>
+                </Comment>
+                <Name>
+                  <type>
+                    <Name>m</Name>
+                  </type>
+                  <symbol>x</symbol>
+                </Name>
+                <Equal>
+                  <Name>x</Name>
+                  <Apply>
+                    <Name>mult-m</Name>
+                    <Name>one-r</Name>
+                    <Name>x</Name>
+                  </Apply>
+                </Equal>
+              </Forall>
+            </And>
+          </Exists>
+        </And>
+      </Equivalent>
+    </Construct>
+  </Titling>
+</Construct>
