@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Corpus xmlns="http://iso-commonlogic.org/xcl2">
+<Forall>
+  <Name>x</Name>
+  <Name>y</Name>
+  <Exists>
+    <Name>P</Name>
+    <Implies>
+      <Not>
+        <Atom>
+          <Name>P</Name>
+          <Name>x</Name>
+          <Name>y</Name>
+        </Atom>
+      </Not>
+      <And>
+        <Equal>
+          <Name>x</Name>
+          <Name>y</Name>
+        </Equal>
+        <Or>
+          <Atom><Name>P</Name></Atom>
+          <Atom><Name>Q</Name></Atom>
+        </Or>
+      </And>
+    </Implies>
+  </Exists>
+</Forall>
+</Corpus>

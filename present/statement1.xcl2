@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Corpus xmlns="http://iso-commonlogic.org/xcl2">
+<In><Name>A</Name></In>
+  
+<Out>
+  <Name>B</Name>
+  <Name>C</Name>
+</Out>
+  
+<Titling>
+  <Name>D</Name>
+  <Construct>
+    <!-- ... -->
+  </Construct>
+</Titling>
+</Corpus>

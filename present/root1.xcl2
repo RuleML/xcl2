@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Corpus
+  xmlns="http://iso-commonlogic.org/xcl2">
+  <Construct><!--  ... --></Construct>
+  <Restrict><!--  ... --></Restrict>
+  <Import><!--  ... --></Import>
+  <In><!--  ... --></In>
+  <Out><!--  ... --></Out>
+  <Forall><!--  ... --></Forall>
+  <Implies><!--  ... --></Implies>
+  <Equal><!--  ... --></Equal>
+  <Atom><!--  ... --></Atom>
+  <!--  ... -->
+</Corpus>
