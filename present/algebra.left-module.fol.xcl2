@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xmlodel href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <prefix pre="lmod" cri="http://ruleml.org/xcl2/exa/algebra/leftodule"/>
+  <prefix pre="rng" cri="http://ruleml.org/xcl2/exa/ringoids/ring"/>
+  <prefix pre="abg" cri="http://ruleml.org/xcl2/exa/magma/abelian-group"/>
+  <Comment>
+    <clodule 
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://stl.mie.utoronto.ca/ColoreSchema">
+      <head>
+        <version>1.0</version>
+        <date>2014-01-01</date>
+        <description>Axioms for Leftodules</description>
+        <keyword>algebra</keyword>
+        <keyword>module</keyword>
+        <source/>
+        <author>Tara Athan</author>
+        <parentOntology/>
+      </head>
+      <additionalInformation/>
+    </clodule>
+    <clif>
+      (txt 
+        (prefix 'lmod' 'http://ruleml.org/xcl2/exa/algebra/module')
+        (prefix 'rng' 'http://ruleml.org/xcl2/exa/ringoids/ring')
+        (prefix 'abg' 'http://ruleml.org/xcl2/exa/magma/abelian-group')
+        (ttl "lmod:.xcl2" 
+          (txt 
+            (restrict scalar (imports "rng:.xcl2")) 
+            (restrict l-module (imports "abg:.xcl2")
+            (forall ((r scalar) (x l-module) (y l-module)) 
+              (= 
+                (mult r (op x y)) 
+                (op (mult r x) (mult r y))
+            ) )
+            (forall ((r scalar) (s scalar) (x l-module)) 
+              (= 
+                (mult (sum r s) x) 
+                (op (mult r x) (mult s x))
+            ) )
+            (forall ((r scalar) (s scalar) (x l-module)) 
+              (= 
+                (mult (prod r s) x) 
+                (mult r (mult s x))
+            ) )
+            (forall ((x l-module)) (= x (mult one x))) 
+      ) ) )  
+    </clif>
+  </Comment>
+  <Titling>
+    <Comment>(ttl "lmod:.xcl2" ...)</Comment>
+    <Name cri=":.xcl2"/>
+    <Construct>
+      <Comment>(txt (restrict scalar (imports "rng:.xcl2")) (restrict m (imports "abg:.xcl2") ...)</Comment>
+      <Restrict>
+        <Name>scalar</Name>  
+        <Import>
+          <Name cri="rng:.xcl2"/>
+        </Import>
+      </Restrict>
+      <Restrict>
+        <Name>l-module</Name>        
+        <Import>
+          <Name cri="abg:.xcl2"/>
+        </Import>
+      </Restrict>
+      <Forall>
+        <Comment>
+          <Comment>Left Distibutive Law of "mult" over "op"</Comment>
+          <content> 
+            (forall ((r scalar) (x l-module) (y l-module)) 
+              (= 
+                (mult r (op x y)) 
+                (op (mult r x) (mult r y))
+            ) )
+          </content>
+        </Comment>
+        <Name>
+          <type>
+            <Name>scalar</Name>
+          </type>
+          <symbol>r</symbol>
+        </Name>
+        <Name>
+          <type>
+            <Name>l-module</Name>
+          </type>
+          <symbol>x</symbol>
+        </Name>
+        <Name>
+          <type>
+            <Name>l-module</Name>
+          </type>
+          <symbol>y</symbol>
+        </Name>
+        <Equal>
+          <Apply>
+            <Name>mult</Name>
+            <Name>r</Name>
+            <Apply>
+              <Name>op</Name>
+              <Name>x</Name>
+              <Name>y</Name>
+            </Apply>
+          </Apply>
+          <Apply>
+            <Name>op</Name>
+            <Apply>
+              <Name>mult</Name>
+              <Name>r</Name>
+              <Name>x</Name>
+            </Apply>
+            <Apply>
+              <Name>mult</Name>
+              <Name>r</Name>
+              <Name>y</Name>
+            </Apply>
+          </Apply>
+        </Equal>
+      </Forall>
+      <Forall>
+        <Comment>
+          <Comment>Right Distributivity of mult over sum</Comment>
+          <content> 
+            (forall ((r scalar) (s scalar) (x l-module)) 
+              (= 
+                (mult (sum r s) x) 
+                (op (mult r x) (mult s x))
+             ) )
+          </content>
+        </Comment>
+        <Name>
+          <type>
+            <Name>scalar</Name>
+          </type>
+          <symbol>r</symbol>
+        </Name>
+        <Name>
+          <type>
+            <Name>scalar</Name>
+          </type>
+          <symbol>s</symbol>
+        </Name>
+        <Name>
+          <type>
+            <Name>l-module</Name>
+          </type>
+          <symbol>x</symbol>
+        </Name>
+        <Equal>
+          <Apply>
+            <Name>mult</Name>
+            <Apply>
+              <Name>sum</Name>
+              <Name>r</Name>
+              <Name>s</Name>
+            </Apply>
+            <Name>x</Name>
+          </Apply>
+          <Apply>
+            <Name>op</Name>
+            <Apply>
+              <Name>mult</Name>
+              <Name>r</Name>
+              <Name>x</Name>
+            </Apply>
+            <Apply>
+              <Name>mult</Name>
+              <Name>s</Name>
+              <Name>x</Name>
+            </Apply>
+          </Apply>
+        </Equal>
+      </Forall>
+      <Forall>
+        <Comment>
+          <Comment>Associativity of mult with prod</Comment>
+          <content> 
+            (forall ((r scalar) (s scalar) (x l-module)) 
+              (= 
+                (mult (prod r s) x) 
+                (mult r (mult s x))
+            ) )
+          </content>
+        </Comment>
+        <Name>
+          <type>
+            <Name>scalar</Name>
+          </type>
+          <symbol>r</symbol>
+        </Name>
+        <Name>
+          <type>
+            <Name>scalar</Name>
+          </type>
+          <symbol>s</symbol>
+        </Name>
+        <Name>
+          <type>
+            <Name>l-module</Name>
+          </type>
+          <symbol>x</symbol>
+        </Name>
+        <Equal>
+          <Apply>
+            <Name>mult</Name>
+            <Apply>
+              <Name>prod</Name>
+              <Name>r</Name>
+              <Name>s</Name>
+            </Apply>
+            <Name>x</Name>
+          </Apply>
+          <Apply>
+            <Name>mult</Name>
+            <Name>r</Name>
+            <Apply>
+              <Name>mult</Name>
+              <Name>s</Name>
+              <Name>x</Name>
+            </Apply>
+          </Apply>
+        </Equal>
+      </Forall>
+      <Forall>
+        <Comment>
+          <Comment>Left identity of mult is one.</Comment>
+          <content> (forall ((x l-module)) (= x (mult one x))) </content>
+        </Comment>
+        <Name>
+          <type>
+            <Name>l-module</Name>
+          </type>
+          <symbol>x</symbol>
+        </Name>
+        <Equal>
+          <Name>x</Name>
+          <Apply>
+            <Name>mult</Name>
+            <Name>one</Name>
+            <Name>x</Name>
+          </Apply>
+        </Equal>
+      </Forall>
+    </Construct>
+  </Titling>
+</Construct>
