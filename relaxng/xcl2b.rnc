@@ -1,22 +1,22 @@
 default namespace = "http://iso-commonlogic.org/xcl2"
 ## Common Logic Syntax XCL2 (Draft)
-start = ExpressionsPlus
-ExpressionsPlus = Corpus | textCategory | statement | sentence
+start = root
+root = Corpus | cltext | statement | sentence
 
 ## Corpora 
 Corpus = element Corpus { Corpus.type }
-Corpus.type = common, (ExpressionsPlus)*
+Corpus.type = common, root*
 
 ## Texts
-textCategory = Construct | Restrict | Import
+cltext = Construct | Restrict | Import
 
 ##    -Text Constructions 
 Construct = element Construct { Construct.type }
-Construct.type = common, (textCategory | statement | sentence)*
+Construct.type = common, (cltext | statement | sentence)*
 
 ##    -Domain Restrictions 
 Restrict = element Restrict { Restrict.type }
-Restrict.type = common, term, textCategory
+Restrict.type = common, term, (cltext | statement | sentence)
 
 ##    -Imports 
 Import = element Import { Import.type }
@@ -32,7 +32,7 @@ Discourse.type = common, Name+
 
 ##    -Text Titlings 
 Titling = element Titling { Titling.type }
-Titling.type = common, Name, textCategory
+Titling.type = common, Name, cltext
 
 ## Sentences
 sentence =
