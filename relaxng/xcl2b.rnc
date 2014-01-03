@@ -108,10 +108,11 @@ Mark.type =
 
 ## The common pattern: Prefixes, Comments, Keys
 common = key.attrib?, prefixDeclaration*, Comment?
-prefixDeclaration = element prefix { pre.attrib, cri.attrib }
+prefixDeclaration = element prefix { pre.attrib, iri.attrib }
 pre.attrib = attribute pre { prefix.datatype }
 prefix.datatype = xsd:NCName?
 Comment = element Comment { attribute * { text }*, (text & anyElement*) }
+iri.attrib = attribute iri { absIRI.datatype }
 key.attrib = attribute key { curieOrAbsIRI.datatype }
 curieOrAbsIRI.datatype = curie.datatype | absIRI.datatype
 curie.datatype =  xsd:string { minLength = "1" pattern = "(([\i-[:]][\c-[:]]*)?:)?.*"}
