@@ -51,7 +51,7 @@
     <Comment>(ttl "lmod:.xcl2" ...)</Comment>
     <Name cri=":.xcl2"/>
     <Construct>
-      <Comment>(txt (restrict scalar (imports "rng:.xcl2")) (restrict m (imports "abg:.xcl2") ...)</Comment>
+      <Comment>(txt (restrict scalar (imports "rng:.xcl2")) (restrict l-module (imports "abg:.xcl2") ...)</Comment>
       <Restrict>
         <Name>scalar</Name>  
         <Import>
