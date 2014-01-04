@@ -2,9 +2,10 @@
 <?xml-model href="../relaxng/xcl2b.rnc"?>
 <cl:Corpus xmlns:cl="http://iso-commonlogic.org/xcl2">
 <cl:Atom>
-  <cl:Name>symbol could be a string
-           where all whitespace is significant</cl:Name>
-  <cl:Name>symbol could<br/> <i>contain</i> <b>markup</b></cl:Name>
+  <cl:Name>symbol could be a string where 
+    all whitespace is significant</cl:Name>
+  <cl:Name>symbol also could<br/> <i>contain</i>
+    <b>markup</b></cl:Name>
   <cl:Name cri="ex:#CURIE"/>
   <cl:Name cri="http://example.org/someIRI"/>
   <cl:Name cri="urn:another:IRI"/>
@@ -17,9 +18,16 @@
     </cl:Apply>
     <cl:Name>
       <cl:Comment>anything goes here</cl:Comment>
-      <cl:symbol></cl:symbol>
+      <cl:symbol>symbol also could<br/> <i>contain</i>
+        <b>markup</b></cl:symbol>
     </cl:Name>
-    <cl:Mark>z</cl:Mark>
+    <cl:Mark>symbol could be a string where 
+      all whitespace is significant</cl:Mark>
+    <cl:Mark>
+      <cl:Comment>anything goes here</cl:Comment>
+      <cl:symbol>symbol also could<br/> <i>contain</i>
+        <b>markup</b></cl:symbol>
+    </cl:Mark>
   </cl:Apply>
 </cl:Atom>
 </cl:Corpus>
