@@ -20,4 +20,17 @@
       <Data>2014-01-07</Data>
     </Apply>
   </Equal>
+  
+<Forall>
+  <prefix pre="mag" 
+    iri="http://example.org/magmas"/>
+  <Name>
+    <type cri="mag:group"/>
+    <symbol>x</symbol>
+  </Name>
+  <Atom>
+    <Name cri="mag:semigroup"/>
+    <Name>x</Name>
+  </Atom>
+</Forall>
 </Corpus>

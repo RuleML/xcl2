@@ -76,7 +76,7 @@ Quantifier.type = clCommon, Name+, clSentence
 clTermSequence = (clTerm | Mark)*
 
 ## Terms 
-clTerm = Apply | Name | Data
+clTerm = Apply | Name 
 
 ##    -Functional Terms 
 Apply = element Apply { Apply.type }
@@ -85,15 +85,23 @@ Apply.type = clCommon, clTerm, clTermSequence
 ##    -Names 
 Name = element Name { Name.type }
 Name.type = 
-  (clCommon, type*, (cri.attrib | symbol)) | 
+  (clCommon, (cri.attrib | symbol)) | 
   (key.attrib?, (text & anyElement*))
 symbol = element symbol {  symbol.type }
 symbol.type = (text & anyElement*)
-type = element type{ type.type }
-type.type = Name
 cri.attrib = attribute cri { curieOrAbsIRI.datatype }
 
-##    -Data
+## Constrained Names in Quantifiers
+Quantifier.type |= clCommon, Name-constrained+, clSentence
+Name-constrained = element Name { Name-constrained.type }
+Name-constrained.type = 
+  (clCommon, type*, (cri.attrib | symbol)) | 
+  (key.attrib?, (text & anyElement*))
+type = element type{ type.type }
+type.type = Name
+
+## Data
+clTerm |= Data
 Data = element Data { Data.type }
 Data.type = 
   (clCommon, symbol-data) | 
