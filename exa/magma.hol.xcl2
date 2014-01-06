@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <prefix pre="mag" iri="http://ruleml.org/cl/exa/magma"/>
+  <prefix pre="set" iri="http://ruleml.org/cl/exa/set"/>
+  <prefix pre="op" iri="http://ruleml.org/cl/exa/operator"/>
+  <Comment>
+    <Comment>
+      A magma is an algebraic structure consisting of a set together with a binary operation
+      that is total on that set.
+      In the HOL approach, the domain of discourse includes not only the elements in the set,
+      but also the operation, and the magma structure itself.
+      The set of a magma m is defined by a relation:
+          ((mag:#set m) x) is true for every x in the set.
+      The operation of a magma m is define by a binary function:
+          ((mag:#op m) x y)
+      Closure is satisfied if
+        ( (mag:#set m) (mag:#op m) x y ) whenever ((mag:#set m) x) and ((mag:#set m) y)
+      Entities that optionally could also belong to the domain of discourse are:
+        the class of magmas, mag:#Magma
+        the class of operations that are total as binary operations on a set defined by a relation S, 
+          (mag:#BinaryTotalOn S) 
+      To define magmas within a restricted domain D, it is necessary to define a domain-indexed class:
+        ((mag:#Magma D) m) if m is a magma on D, which means that 
+        1. the set (mag:?#set m) is a subset of D, and
+        2. m is a magma in the unrestricted sense: (mag:#Magma m) is true
+    </Comment>    
+    <cl-module 
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://stl.mie.utoronto.ca/ColoreSchema">
+      <head>
+        <version>1.0</version>
+        <date>2014-01-03</date>
+        <description>HOL Axioms for Magmas</description>
+        <keyword>magma</keyword>
+        <source/>
+        <author>Tara Athan</author>
+        <parentOntology/>
+      </head>
+      <additionalInformation/>
+    </cl-module>
+    <clif>
+      (txt
+        (pre mag "http://ruleml.org/cl/exa/magma")
+        (ttl "mag:/hol/clif" 
+          (txt
+            (forall (m)
+              (iff   
+                ("mag:#Magma" m)
+                (("mag:#BinaryTotalOn ("mag:#set m)) ("mag:#op m))
+            ) )      
+            (forall (m D)
+              (iff   
+                (("mag:#Magma" D) m)
+                (and
+                  ("set:#subset" ("mag:#set m) D)
+                  ("mag:#Magma" m)
+                )  
+            ) )      
+            (forall (op s)
+              (iff   
+                (("mag:#BinaryTotalOn" s) op)
+                (forall ((x s) (y s))
+                  (s (op x y))
+                )
+            ) )      
+      ) ) )    
+    </clif>
+  </Comment>
+  <Titling>
+    <Comment>(ttl "mag:/hol/clif" ...)</Comment>
+    <Name cri="mag:/hol/xcl2"/>
+    <Construct>
+      <Forall>
+        <Comment>
+          <Comment>Definition of magma</Comment>
+          <clif>
+            (forall (m)
+              (iff   
+                ("mag:#Magma" m)
+                (("mag:#BinaryTotalOn ("mag:#set m)) ("mag:#op m))
+            ) )
+          </clif>
+        </Comment>
+        <Name>m</Name>
+        <Equivalent>
+          <Atom>
+            <Name cri="mag:#Magma"/>
+            <Name>m</Name>
+          </Atom>
+          <Atom>
+            <Apply>
+              <Name cri="mag:#BinaryTotalOn"/>
+              <Apply>
+                <Name cri="mag:#set"/>
+                <Name>m</Name>
+              </Apply>
+              <Apply>
+                <Name cri="mag:#op"/>
+                <Name>m</Name>
+              </Apply>
+            </Apply>
+          </Atom>
+        </Equivalent>
+      </Forall>
+      <Forall>
+        <Comment>
+          <Comment>Definition of domain-indexed magma</Comment>
+          <clif>
+            (forall (m D)
+              (iff   
+                (("mag:#Magma" D) m)
+                (and
+                  ("set:#subset" ("mag:#set m) D)
+                  ("mag:#Magma" m)
+            ) ) )
+          </clif>
+        </Comment>
+        <Name>m</Name>
+        <Name>D</Name>
+        <Equivalent>
+          <Atom>
+            <Apply>
+              <Name cri="mag:#Magma"/>
+              <Name>D</Name>
+            </Apply>
+            <Name>m</Name>
+          </Atom>
+          <And>
+            <Atom>
+              <Name cri="set:#subset"></Name>
+              <Apply>
+                <Name cri="mag:#set"></Name>
+                <Name>m</Name>
+              </Apply>
+              <Name>D</Name>
+            </Atom>
+            <Atom>
+              <Name cri="mag:#Magma"/>
+              <Name>m</Name>
+            </Atom>
+          </And>
+        </Equivalent>
+      </Forall>
+      <Forall>
+        <Comment>
+          <Comment>Definition of the set-indexed class of operators that are total binary operators on that set.</Comment>
+          <clif>
+            (forall (op s)
+              (iff   
+                (("mag:#BinaryTotalOn" s) op)
+                (and
+                  (set:#Set s)
+                  (op:#Binary op)
+                  (forall ((x s) (y s))
+                    (s (op x y)))
+                )  
+            ) )      
+          </clif>
+        </Comment>
+        <Name>op</Name>
+        <Name>s</Name>
+        <Equivalent>
+          <Atom>
+            <Apply>
+              <Name cri="mag:#BinaryTotalOn"/>
+              <Name>s</Name>
+            </Apply>
+            <Name>op</Name>
+          </Atom>
+          <And>
+            <Atom>
+              <Name cri="set:#Set"/>
+              <Name>s</Name>
+            </Atom>
+            <Atom>
+              <Name cri="op:#Binary"/>
+              <Name>op</Name>
+            </Atom>
+            <Forall>
+              <Name>
+                <type><Name>s</Name></type>
+                <symbol>x</symbol>
+              </Name>
+              <Name>
+                <type><Name>s</Name></type>
+                <symbol>y</symbol>
+              </Name>
+              <Atom>
+                <Name>s</Name>
+                <Apply>
+                  <Name>op</Name>
+                  <Name>x</Name>
+                  <Name>y</Name>
+                </Apply>
+              </Atom>
+            </Forall>
+          </And>
+        </Equivalent>
+      </Forall>
+    </Construct>
+  </Titling>
+</Construct>

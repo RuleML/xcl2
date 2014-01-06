@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Construct xmlns="http://iso-commonlogic.org/xcl2">
+  <prefix pre="mag" iri="http://ruleml.org/cl/exa/magma"/>
+  <Comment>
+    <Comment>
+      A magma is an algebraic structure consisting of a set together with a binary operation
+      that is total on that set.
+      In the FOL approach, the domain of discourse includes only the elements in the set,
+      while the operation, and the magma structure itself are at best part of the
+      universe of reference.
+      The operation of a magma m is expressed as binary function:
+          (op x y)
+      Closure is satisfied if
+      (forall (x y)
+        (exists (z)
+           ( = z (op x y )
+      ) )
+      Importing these axioms into a domain of discourse means that
+      the algebraic structure consisting of the domain of discourse and
+      the binary operation op acting on the domain is a magma.
+    </Comment>    
+    <cl-module 
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://stl.mie.utoronto.ca/ColoreSchema">
+      <head>
+        <version>1.0</version>
+        <date>2014-01-03</date>
+        <description>FOL Axioms for Magmas</description>
+        <keyword>magma</keyword>
+        <source/>
+        <author>Tara Athan</author>
+        <parentOntology/>
+      </head>
+      <additionalInformation/>
+    </cl-module>
+    <clif>
+      (txt
+        (pre mag "http://ruleml.org/cl/exa/magma")
+        (ttl "mag:/fol/clif" 
+          (txt
+            (forall (x y)
+              (exists (z)
+                ( = z (op x y )
+          ) ) )     
+      ) ) )    
+    </clif>
+  </Comment>
+  <Titling>
+    <Comment>(ttl "mag:/fol/clif" ...)</Comment>
+    <Name cri="mag:/fol/xcl2"/>
+    <Construct>
+      <Forall>
+        <Comment>
+          <Comment>Totality of op</Comment>
+          <clif>(forall (x y)
+            (exists (z)
+              ( = z (op x y )
+            ) )</clif>
+        </Comment>
+        <Name>x</Name>
+        <Name>y</Name>
+        <Exists>
+          <Name>z</Name>
+          <Equal>
+            <Name>z</Name>
+            <Apply>
+              <Name>op</Name>
+              <Name>x</Name>
+              <Name>y</Name>
+            </Apply>
+          </Equal>
+        </Exists>
+      </Forall>            
+    </Construct>
+  </Titling>
+</Construct>
