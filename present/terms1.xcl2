@@ -1,33 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../relaxng/xcl2b.rnc"?>
 <cl:Corpus xmlns:cl="http://iso-commonlogic.org/xcl2">
-<cl:Atom>
-  <cl:Name>symbol could be a string where 
-    all whitespace is significant</cl:Name>
-  <cl:Name>symbol also could<br/> <i>contain</i>
-    <b>markup</b></cl:Name>
-  <cl:Name cri="ex:#CURIE"/>
-  <cl:Name cri="http://example.org/someIRI"/>
-  <cl:Name cri="urn:another:IRI"/>
-  <cl:Apply>
+  <cl:prefix pre="xsd" iri="http://www.w3.org/2001/XMLSchema"/>
+  <cl:Atom>
+    <cl:Name>symbol could be a string where all whitespace is significant</cl:Name>
+    <cl:Name>symbol also could<br/>
+      <i>contain</i>
+      <b>markup</b></cl:Name>
+    <cl:Name cri="ex:#CURIE"/>
+    <cl:Name cri="http://example.org/someIRI"/>
+    <cl:Name cri="urn:another:IRI"/>
     <cl:Apply>
-      <cl:Name cri="ex:#spouse">
-        <cl:Comment>defined elsewhere</cl:Comment>
+      <cl:Apply>
+        <cl:Name cri="ex:#spouse">
+          <cl:Comment>defined elsewhere</cl:Comment>
+        </cl:Name>
+        <cl:Name cri="mailto:johndoe@gmail.com"/>
+      </cl:Apply>
+      <cl:Name>
+        <cl:Comment>anything goes here</cl:Comment>
+        <cl:symbol>symbol also could<br/>
+          <i>contain</i>
+          <b>markup</b></cl:symbol>
       </cl:Name>
-      <cl:Name cri="mailto:johndoe@gmail.com"/>
+      <cl:Mark>symbol could be a string where all whitespace is significant</cl:Mark>
+      <cl:Mark>
+        <cl:Comment>anything goes here</cl:Comment>
+        <cl:symbol>symbol also could<br/>
+          <i>contain</i>
+          <b>markup</b></cl:symbol>
+      </cl:Mark>
+  <cl:Data>abc</cl:Data>
+  <cl:Data xmlns="http://www.openhealth.org/xmtp#">
+    <display>David Cameron</display>
+    <fromdisplay>Angela Merkel</fromdisplay>
+    <contenttext>Happy New Year!</contenttext>
+  </cl:Data>
+  <cl:Data datatype="xsd:decimal">1.4</cl:Data>
+  <cl:Data datatype="xsd:date">2014-01-07</cl:Data>
+  <cl:Data datatype="xsd:decimal">2014-01-07</cl:Data>
     </cl:Apply>
-    <cl:Name>
-      <cl:Comment>anything goes here</cl:Comment>
-      <cl:symbol>symbol also could<br/> <i>contain</i>
-        <b>markup</b></cl:symbol>
-    </cl:Name>
-    <cl:Mark>symbol could be a string where 
-      all whitespace is significant</cl:Mark>
-    <cl:Mark>
-      <cl:Comment>anything goes here</cl:Comment>
-      <cl:symbol>symbol also could<br/> <i>contain</i>
-        <b>markup</b></cl:symbol>
-    </cl:Mark>
-  </cl:Apply>
-</cl:Atom>
+  </cl:Atom>
+  <cl:Equal>
+    <cl:Data datatype="xsd:date">2014-01-07</cl:Data>
+    <cl:Apply>
+      <cl:Name cri="xsd:date"/>
+      <cl:Data>2014-01-07</cl:Data>
+    </cl:Apply>
+  </cl:Equal>
 </cl:Corpus>

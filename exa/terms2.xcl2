@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2b.rnc"?>
+<Corpus xmlns="http://iso-commonlogic.org/xcl2">
+  <prefix pre="xsd" iri="http://www.w3.org/2001/XMLSchema"/>
+  <Atom>
+  <Data>abc</Data>
+  <Data xmlns:m="http://www.openhealth.org/xmtp#">
+    <m:display>David Cameron</m:display>
+    <m:fromdisplay>Angela Merkel</m:fromdisplay>
+    <m:contenttext>Happy New Year!</m:contenttext>
+  </Data>
+  <Data datatype="xsd:decimal">1.4</Data>
+  <Data datatype="xsd:date">2014-01-07</Data>
+  <Data datatype="xsd:decimal">2014-01-07</Data>
+  </Atom>
+  <Equal>
+    <Data datatype="xsd:date">2014-01-07</Data>
+    <Apply>
+      <Name cri="xsd:date"/>
+      <Data>2014-01-07</Data>
+    </Apply>
+  </Equal>
+</Corpus>

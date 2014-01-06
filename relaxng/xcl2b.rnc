@@ -1,41 +1,41 @@
 default namespace = "http://iso-commonlogic.org/xcl2"
 ## Common Logic Syntax XCL2 (Draft)
-start = root
-root = Corpus | cltext | statement | sentence
+start =  clRoot
+clRoot = Corpus | clText | clStatement | clSentence
 
 ## Corpora 
 Corpus = element Corpus { Corpus.type }
-Corpus.type = common, root*
+Corpus.type = clCommon, clRoot*
 
 ## Texts
-cltext = Construct | Restrict | Import
+clText = Construct | Restrict | Import
 
 ##    -Text Constructions 
 Construct = element Construct { Construct.type }
-Construct.type = common, (cltext | statement | sentence)*
+Construct.type = clCommon, (clText | clStatement | clSentence)*
 
 ##    -Domain Restrictions 
 Restrict = element Restrict { Restrict.type }
-Restrict.type = common, term, (cltext | statement | sentence)
+Restrict.type = clCommon, clTerm, clText
 
 ##    -Imports 
 Import = element Import { Import.type }
-Import.type = common, Name
+Import.type = clCommon, Name
 
 ## Statements
-statement = In | Out | Titling
+clStatement = In | Out | Titling
 
 ##    -Discourse Statements 
 In = element In { Discourse.type }
 Out = element Out { Discourse.type }
-Discourse.type = common, Name+
+Discourse.type = clCommon, Name+
 
 ##    -Text Titlings 
 Titling = element Titling { Titling.type }
-Titling.type = common, Name, cltext
+Titling.type = clCommon, Name, clText
 
 ## Sentences
-sentence =
+clSentence =
   Atom
   | Equal
   | And
@@ -48,42 +48,44 @@ sentence =
 
 ##    -Atomic Formulas 
 Atom = element Atom { Atom.type }
-Atom.type = common, term, termSequence
+Atom.type = clCommon, clTerm, clTermSequence
 
 ##    -Equals 
 Equal = element Equal { Equal.type }
-Equal.type = common, term, term
+Equal.type = clCommon, clTerm, clTerm
 
 ##    -Connectives 
 And = element And { AndOr.type }
 Or = element Or { AndOr.type }
-AndOr.type = common, sentence*
+AndOr.type = clCommon, clSentence*
 Not = element Not { Not.type }
-Not.type = common, sentence
+Not.type = clCommon, clSentence
 Implies = element Implies { Implies.type }
-Implies.type = common, sentence, sentence
+Implies.type = clCommon, clSentence, clSentence
 Equivalent = element Equivalent { Equivalent.type }
-Equivalent.type = common, sentence, sentence
+Equivalent.type = clCommon, clSentence, clSentence
 
 ##    -Quantifications 
-Forall = element Forall { Quantifier.type }
-Exists = element Exists { Quantifier.type }
-Quantifier.type = common, Name+, sentence
+Forall = element Forall { Forall.type }
+Exists = element Exists { Exists.type }
+Forall.type = Quantifier.type
+Exists.type = Quantifier.type
+Quantifier.type = clCommon, Name+, clSentence
 
 ## Term Sequences 
-termSequence = (term | Mark)*
+clTermSequence = (clTerm | Mark)*
 
 ## Terms 
-term = Apply | Name | Data
+clTerm = Apply | Name | Data
 
 ##    -Functional Terms 
 Apply = element Apply { Apply.type }
-Apply.type = common, term, termSequence
+Apply.type = clCommon, clTerm, clTermSequence
 
 ##    -Names 
 Name = element Name { Name.type }
 Name.type = 
-  (common, type*, (cri.attrib | symbol)) | 
+  (clCommon, type*, (cri.attrib | symbol)) | 
   (key.attrib?, (text & anyElement*))
 symbol = element symbol {  symbol.type }
 symbol.type = (text & anyElement*)
@@ -94,7 +96,7 @@ cri.attrib = attribute cri { curieOrAbsIRI.datatype }
 ##    -Data
 Data = element Data { Data.type }
 Data.type = 
-  (common, symbol-data) | 
+  (clCommon, symbol-data) | 
   (key.attrib?, datatype.attrib?, (text & anyElement*))
 symbol-data = element symbol { symbol-data.type }
 symbol-data.type = datatype.attrib?,  (text & anyElement*)
@@ -103,12 +105,12 @@ datatype.attrib = attribute datatype { curieOrAbsIRI.datatype }
 ## Sequence Markers 
 Mark = element Mark { Mark.type }
 Mark.type = 
-  (common, symbol) | 
+  (clCommon, symbol) | 
   (key.attrib?, (text & anyElement*)) 
 
-## The common pattern: Prefixes, Comments, Keys
-common = key.attrib?, prefixDeclaration*, Comment?
-prefixDeclaration = element prefix { pre.attrib, iri.attrib }
+## The clCommon pattern: Prefixes, Comments, Keys
+clCommon = key.attrib?, prefix*, Comment?
+prefix = element prefix { pre.attrib, iri.attrib }
 pre.attrib = attribute pre { prefix.datatype }
 prefix.datatype = xsd:NCName?
 Comment = element Comment { attribute * { text }*, (text & anyElement*) }
