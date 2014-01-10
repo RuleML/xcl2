@@ -73,7 +73,7 @@ Exists.type = Quantifier.type
 Quantifier.type = clCommon, Name+, clSentence
 
 ## Term Sequences 
-clTermSequence = (clTerm | Mark)*
+clTermSequence = (clTerm | Marker)*
 
 ## Terms 
 clTerm = Apply | Name 
@@ -111,16 +111,17 @@ symbol-data.type = datatype.attrib?,  (text & anyElement*)
 datatype.attrib = attribute datatype { curieOrAbsIRI.datatype }
 
 ## Sequence Markers 
-Mark = element Mark { Mark.type }
-Mark.type = 
+Marker = element Marker { Marker.type }
+Marker.type = 
   (clCommon, symbol) | 
   (key.attrib?, (text & anyElement*)) 
 
 ## The clCommon pattern: Prefixes, Comments, Keys
-clCommon = key.attrib?, prefix*, Comment?
-prefix = element prefix { pre.attrib, iri.attrib }
-pre.attrib = attribute pre { prefix.datatype }
-prefix.datatype = xsd:NCName?
+clCommon = key.attrib?, Prefix*, Comment?
+Prefix = element Prefix { Prefix.type } 
+Prefix.type = pre.attrib, iri.attrib
+pre.attrib = attribute pre { pre.datatype }
+pre.datatype = xsd:NCName?
 Comment = element Comment { attribute * { text }*, (text & anyElement*) }
 iri.attrib = attribute iri { absIRI.datatype }
 key.attrib = attribute key { curieOrAbsIRI.datatype }
