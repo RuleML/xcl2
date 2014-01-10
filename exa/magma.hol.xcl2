@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../relaxng/xcl2b.rnc"?>
 <Construct xmlns="http://iso-commonlogic.org/xcl2">
-  <prefix pre="mag" iri="http://ruleml.org/cl/exa/magma"/>
-  <prefix pre="set" iri="http://ruleml.org/cl/exa/set"/>
-  <prefix pre="op" iri="http://ruleml.org/cl/exa/operator"/>
+  <Prefix pre="mag" iri="http://ruleml.org/cl/exa/magma"/>
+  <Prefix pre="set" iri="http://ruleml.org/cl/exa/set"/>
+  <Prefix pre="op" iri="http://ruleml.org/cl/exa/operator"/>
   <Comment>
     <Comment>
       A magma is an algebraic structure consisting of a set together with a binary operation

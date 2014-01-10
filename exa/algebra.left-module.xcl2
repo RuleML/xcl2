@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../relaxng/xcl2b.rnc"?>
 <Construct xmlns="http://iso-commonlogic.org/xcl2">
-  <prefix pre="lmod" iri="http://ruleml.org/xcl2/exa/algebra/left-module"/>
-  <prefix pre="rng" iri="http://ruleml.org/xcl2/exa/ringoids/ring"/>
-  <prefix pre="abg" iri="http://ruleml.org/xcl2/exa/magma/abelian-group"/>
+  <Prefix pre="lmod" iri="http://ruleml.org/xcl2/exa/algebra/left-module"/>
+  <Prefix pre="rng" iri="http://ruleml.org/xcl2/exa/ringoids/ring"/>
+  <Prefix pre="abg" iri="http://ruleml.org/xcl2/exa/magma/abelian-group"/>
   <Comment>
     <cl-module 
       xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://stl.mie.utoronto.ca/ColoreSchema">

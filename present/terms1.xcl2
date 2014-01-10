@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../relaxng/xcl2b.rnc"?>
 <cl:Corpus xmlns:cl="http://iso-commonlogic.org/xcl2">
-  <cl:prefix pre="xsd" iri="http://www.w3.org/2001/XMLSchema"/>
+  <cl:Prefix pre="xsd" iri="http://www.w3.org/2001/XMLSchema"/>
   <cl:Atom>
     <cl:Name>symbol could be a string where all whitespace is significant</cl:Name>
     <cl:Name>symbol also could<br/>
@@ -23,13 +23,13 @@
           <i>contain</i>
           <b>markup</b></cl:symbol>
       </cl:Name>
-      <cl:Mark>symbol could be a string where all whitespace is significant</cl:Mark>
-      <cl:Mark>
+      <cl:Marker>symbol could be a string where all whitespace is significant</cl:Marker>
+      <cl:Marker>
         <cl:Comment>anything goes here</cl:Comment>
         <cl:symbol>symbol also could<br/>
           <i>contain</i>
           <b>markup</b></cl:symbol>
-      </cl:Mark>
+      </cl:Marker>
   <cl:Data>abc</cl:Data>
   <cl:Data xmlns="http://www.openhealth.org/xmtp#">
     <display>David Cameron</display>

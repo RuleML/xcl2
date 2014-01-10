@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../relaxng/xcl2b.rnc"?>
 <Construct xmlns="http://iso-commonlogic.org/xcl2">
-  <prefix pre="xsd" iri="http://www.w3.org/2001/XMLSchema"/>
+  <Prefix pre="xsd" iri="http://www.w3.org/2001/XMLSchema"/>
   <Comment>Example 9.
     (cl:module PositiveIntegers (not (π &lt; 4)))
   </Comment>

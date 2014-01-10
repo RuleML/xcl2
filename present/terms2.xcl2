@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-model href="../relaxng/xcl2b.rnc"?>
 <Corpus xmlns="http://iso-commonlogic.org/xcl2">
-  <prefix pre="xsd" iri="http://www.w3.org/2001/XMLSchema"/>
+  <Prefix pre="xsd" iri="http://www.w3.org/2001/XMLSchema"/>
   <Atom>
   <Data>abc</Data>
   <Data xmlns:m="http://www.openhealth.org/xmtp#">
@@ -22,7 +22,7 @@
   </Equal>
   
 <Forall>
-  <prefix pre="mag" 
+  <Prefix pre="mag" 
     iri="http://example.org/magmas"/>
   <Name>
     <type cri="mag:group"/>
