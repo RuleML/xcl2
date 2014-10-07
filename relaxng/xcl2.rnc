@@ -21,7 +21,7 @@ Import = element Import { Import.type }
 Import.type = clCommon, Name
 
 ## Statements
-clStatement = In | Out | Titling
+clStatement = In | Out | Titling | Schema
 
 ## -Discourse Statements
 In = element In { Discourse.type }
@@ -31,6 +31,10 @@ Discourse.type = clCommon, Name+
 ## -Text Titlings
 Titling = element Titling { Titling.type }
 Titling.type = clCommon, Name, clText
+
+## Schemas
+Schema = element Schema { Schema.type }
+Schema.type = clCommon, Marker+, (Schema | clSentence) 
 
 ## Sentences
 clSentence = Atom | Equal | And | Or | Not | Implies | Equivalent | Forall | Exists
