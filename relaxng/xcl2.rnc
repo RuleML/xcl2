@@ -123,7 +123,6 @@ Marker = element Marker { Marker.type }
 Marker.type =
   (clCommon, symbol)
   | (key.attrib?, (text & anyElement*))
-# Marker |= notAllowed
 
 ## The clCommon pattern: Prefixes, Comments, Keys
 clCommon &= key.attrib?
@@ -143,8 +142,9 @@ iri.attrib = attribute iri { absIRI.datatype }
 key.attrib = attribute key { curieOrAbsIRI.datatype }
 #key.attrib |= empty
 cri.attrib = attribute cri { curieOrAbsIRI.datatype }
-curieOrAbsIRI.datatype = curie.datatype | absIRI.datatype
-curie.datatype = xsd:string { minLength = "1" pattern = "(([\i-[:]][\c-[:]]*)?:)?.*" }
+curieOrAbsIRI.datatype |= curie.datatype
+curieOrAbsIRI.datatype |= absIRI.datatype
+#curie.datatype = xsd:string { minLength = "1" pattern = "(([\i-[:]][\c-[:]]*)?:)?.*" }
 absIRI.datatype = xsd:anyURI { pattern = "[\i-[:]][\c-[:]]*:.*" }
 base.attrib = attribute xml:base {xsd:anyURI}
 anyElement =
