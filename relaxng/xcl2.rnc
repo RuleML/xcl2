@@ -1,4 +1,4 @@
-default namespace = "http://iso-commonlogic.org/xcl2"
+default namespace = "http://purl.org/xcl/2.0/"
 ## Common Logic Syntax XCL2 (Draft)
 start =  clRoot
 clRoot = Corpus | clText | clStatement | clSentence
@@ -89,7 +89,6 @@ Name.type =
   (key.attrib?, (text & anyElement*))
 symbol = element symbol {  symbol.type }
 symbol.type = (text & anyElement*)
-cri.attrib = attribute cri { curieOrAbsIRI.datatype }
 
 ## Constrained Names in Quantifiers
 Quantifier.type |= clCommon, Name-constrained+, clSentence
@@ -124,6 +123,7 @@ pre.attrib = attribute pre { pre.datatype }
 pre.datatype = xsd:NCName?
 Comment = element Comment { attribute * { text }*, (text & anyElement*) }
 iri.attrib = attribute iri { absIRI.datatype }
+cri.attrib = attribute cri { curieOrAbsIRI.datatype }
 key.attrib = attribute key { curieOrAbsIRI.datatype }
 curieOrAbsIRI.datatype = curie.datatype | absIRI.datatype
 curie.datatype =  xsd:string { minLength = "1" pattern = "(([\i-[:]][\c-[:]]*)?:)?.*"}
