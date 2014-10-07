@@ -1,0 +1,26 @@
+(txt
+  (pre op "http://ruleml.org/cl/exa/operator")
+  (pre bin "http://ruleml.org/cl/exa/operator/binary")
+  (pre set "http://ruleml.org/cl/exa/set")
+  (ttl "bin:total/hol/clif" 
+    (txt
+      (forall (op (s "set:#Set"))
+        (iff   
+          (("op:#BinaryTotalOn" s) op)
+          (and
+            ("op:#Operator" op)
+            (forall ((x s) (y s))
+              (s (op x y))
+          ) )
+      ) )      
+      (forall (op)
+        (iff   
+          ("op:#BinaryTotal" op)
+          (and
+            ("op:#Operator" op)
+            (forall (x y)
+              (exists (z)
+                (= z (op x y))
+          ) ) )
+      ) )      
+) ) )    
