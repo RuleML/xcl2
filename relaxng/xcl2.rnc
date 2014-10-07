@@ -102,18 +102,17 @@ symbol.type = text & anyElement*
 ## Constrained Names in Quantifiers
 Quantifier.type |= clCommon, Name-constrained+, clSentence
 Name-constrained = element Name { Name-constrained.type }
-Name-constrained.type =
-  (clCommon, type*, (cri.attrib | symbol))
-  | (key.attrib?, (text & anyElement*))
+Name-constrained.type |= clCommon, type*, cri.attrib
+Name-constrained.type |= clCommon, type*, symbol
+Name-constrained.type |= key.attrib?, (text & anyElement*)
 type = element type { type.type }
 type.type = Name
 
 ## Data
 clTerm |= Data
 Data = element Data { Data.type }
-Data.type =
-  (clCommon, symbol-data)
-  | (key.attrib?, datatype.attrib?, (text & anyElement*))
+Data.type |= clCommon, symbol-data
+Data.type |= key.attrib?, datatype.attrib?, (text & anyElement*)
 symbol-data = element symbol { symbol-data.type }
 symbol-data.type = datatype.attrib?, (text & anyElement*)
 datatype.attrib = attribute datatype { curieOrAbsIRI.datatype }
