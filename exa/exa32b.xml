@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<Construct xmlns="http://purl.org/xcl/2.0/">
+  <Comment>Example 32.</Comment>
+  <Schema>
+    <Marker>X</Marker>
+    <Marker>Y</Marker>
+    <Forall>
+        <Name>x</Name>
+        <Name>y</Name>
+        <Implies>
+        <And>
+          <Equal>
+            <Name>x</Name>
+            <Apply><Name>List</Name><Marker>X</Marker></Apply>
+          </Equal>          
+          <Equal>
+            <Name>y</Name>
+            <Apply><Name>List</Name><Marker>Y</Marker></Apply>
+          </Equal>          
+        </And>
+          <Equal>
+            <Apply>
+              <Name>concat</Name>
+              <Name>x</Name>
+              <Name>y</Name>
+            </Apply>
+            <Apply>
+              <Name>List</Name>
+              <Marker>X</Marker>
+              <Marker>Y</Marker>
+            </Apply>
+          </Equal>          
+        </Implies>
+     </Forall>
+  </Schema>
+</Construct>
