@@ -1,12 +1,17 @@
 default namespace = "http://purl.org/xcl/2.0/"
 
 ## Common Logic Syntax XCL2 (Draft)
-start = clDocument | clText | clStatement | clSentence
+start |= clDocument
+start |= clText
+start |= clStatement
+start |= clSentence
 clDocument = element Document { Document.type}
 Document.type = clCommon, clText* 
 
 ## Texts
-clText = Construct | Restrict | Import
+clText |= Construct
+clText |= Restrict
+clText |= Import
 
 ## -Text Constructions
 Construct = element Construct { Construct.type }
@@ -21,12 +26,15 @@ Import = element Import { Import.type }
 Import.type = clCommon, Name
 
 ## Statements
-clStatement = In | Out | Titling | Schema
+clStatement |= Out
+clStatement |= In
+clStatement |= Titling
+clStatement |= Schema
 
 ## -Discourse Statements
-In = element In { Discourse.type }
 Out = element Out { Discourse.type }
-Discourse.type = clCommon, Name+
+In = element In { Discourse.type }
+Discourse.type = clCommon, clTerm+
 
 ## -Text Titlings
 Titling = element Titling { Titling.type }
@@ -37,7 +45,15 @@ Schema = element Schema { Schema.type }
 Schema.type = clCommon, Marker+, (Schema | clSentence) 
 
 ## Sentences
-clSentence = Atom | Equal | And | Or | Not | Implies | Equivalent | Forall | Exists
+clSentence |= Atom
+clSentence |= Equal
+clSentence |= And
+clSentence |= Or
+clSentence |= Not
+clSentence |= Implies
+clSentence |= Equivalent
+clSentence |= Forall
+clSentence |= Exists
 
 ## -Atomic Formulas
 Atom = element Atom { Atom.type }
@@ -59,17 +75,17 @@ Equivalent = element Equivalent { Equivalent.type }
 Equivalent.type = clCommon, clSentence, clSentence
 
 ## -Quantifications
-Forall = element Forall { Forall.type }
-Exists = element Exists { Exists.type }
-Forall.type = Quantifier.type
-Exists.type = Quantifier.type
+Forall = element Forall { Quantifier.type }
+Exists = element Exists { Quantifier.type }
 Quantifier.type = clCommon, Name+, clSentence
 
 ## Term Sequences
-clTermSequence = (clTerm | Marker)*
+clTermSequence &= clTerm*
+clTermSequence &= Marker*
 
 ## Terms
-clTerm = Apply | Name
+clTerm |= Apply
+clTerm |= Name
 
 ## -Functional Terms
 Apply = element Apply { Apply.type }
@@ -77,9 +93,9 @@ Apply.type = clCommon, clTerm, clTermSequence
 
 ## -Names
 Name = element Name { Name.type }
-Name.type =
-  (clCommon, (cri.attrib | symbol))
-  | (key.attrib?, (text & anyElement*))
+Name.type |= clCommon, cri.attrib
+Name.type |= clCommon, symbol
+Name.type |= key.attrib?, (text & anyElement*)
 symbol = element symbol { symbol.type }
 symbol.type = text & anyElement*
 
@@ -107,9 +123,13 @@ Marker = element Marker { Marker.type }
 Marker.type =
   (clCommon, symbol)
   | (key.attrib?, (text & anyElement*))
+# Marker |= notAllowed
 
 ## The clCommon pattern: Prefixes, Comments, Keys
-clCommon = key.attrib?, Prefix*, Comment?, base.attrib?
+clCommon &= key.attrib?
+clCommon &= Prefix*
+clCommon &= Comment?
+clCommon &= base.attrib?
 Prefix = element Prefix { Prefix.type }
 Prefix.type = pre.attrib, iri.attrib
 pre.attrib = attribute pre { pre.datatype }
@@ -121,6 +141,7 @@ Comment =
   }
 iri.attrib = attribute iri { absIRI.datatype }
 key.attrib = attribute key { curieOrAbsIRI.datatype }
+#key.attrib |= empty
 cri.attrib = attribute cri { curieOrAbsIRI.datatype }
 curieOrAbsIRI.datatype = curie.datatype | absIRI.datatype
 curie.datatype = xsd:string { minLength = "1" pattern = "(([\i-[:]][\c-[:]]*)?:)?.*" }
@@ -131,4 +152,3 @@ anyElement =
     attribute * { text }*,
     (text & anyElement*)
   }
-
