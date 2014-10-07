@@ -120,9 +120,8 @@ datatype.attrib = attribute datatype { curieOrAbsIRI.datatype }
 
 ## Sequence Markers
 Marker = element Marker { Marker.type }
-Marker.type =
-  (clCommon, symbol)
-  | (key.attrib?, (text & anyElement*))
+Marker.type |=  clCommon, symbol
+Marker.type |=  key.attrib?, (text & anyElement*)
 
 ## The clCommon pattern: Prefixes, Comments, Keys
 clCommon &= key.attrib?
@@ -144,7 +143,7 @@ key.attrib = attribute key { curieOrAbsIRI.datatype }
 cri.attrib = attribute cri { curieOrAbsIRI.datatype }
 curieOrAbsIRI.datatype |= curie.datatype
 curieOrAbsIRI.datatype |= absIRI.datatype
-#curie.datatype = xsd:string { minLength = "1" pattern = "(([\i-[:]][\c-[:]]*)?:)?.*" }
+curie.datatype = xsd:string { minLength = "1" pattern = "(([\i-[:]][\c-[:]]*)?:)?.*" }
 absIRI.datatype = xsd:anyURI { pattern = "[\i-[:]][\c-[:]]*:.*" }
 base.attrib = attribute xml:base {xsd:anyURI}
 anyElement =

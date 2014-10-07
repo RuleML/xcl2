@@ -120,9 +120,8 @@ Name.type |= key.attrib?, (text & anyElement*)
 
 ## Sequence Markers
 #Marker = element Marker { Marker.type }
-#Marker.type =
-#  (clCommon, symbol)
-#  | (key.attrib?, (text & anyElement*))
+#Marker.type |=  clCommon, symbol
+#Marker.type |=  key.attrib?, (text & anyElement*)
 
 ## The clCommon pattern: Prefixes, Comments, Keys
 clCommon &= key.attrib?
