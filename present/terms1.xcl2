@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../relaxng/xcl2b.rnc"?>
-<cl:Corpus xmlns:cl="http://iso-commonlogic.org/xcl2">
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<cl:Construct xmlns:cl="http://purl.org/xcl/2.0/">
   <cl:Prefix pre="xsd" iri="http://www.w3.org/2001/XMLSchema"/>
   <cl:Atom>
     <cl:Name>symbol could be a string where all whitespace is significant</cl:Name>
@@ -48,4 +48,4 @@
       <cl:Data>2014-01-07</cl:Data>
     </cl:Apply>
   </cl:Equal>
-</cl:Corpus>
+</cl:Construct>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../relaxng/xcl2b.rnc"?>
-<Construct xmlns="http://iso-commonlogic.org/xcl2">
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<Construct xmlns="http://purl.org/xcl/2.0/">
   <Prefix pre="xsd" iri="http://www.w3.org/2001/XMLSchema"/>
   <Comment>Example 8 
     (cl:text

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../relaxng/xcl2b.rnc"?>
-<Corpus xmlns="http://iso-commonlogic.org/xcl2"
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<Document xmlns="http://purl.org/xcl/2.0/"
   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance">
   <Comment>Example 20.</Comment>
   
@@ -200,4 +200,4 @@
       </Construct>
     </Titling>
   </Construct>
-</Corpus>
+</Document>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../relaxng/xcl2b.rnc"?>
-<Construct xmlns="http://iso-commonlogic.org/xcl2">
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<Construct xmlns="http://purl.org/xcl/2.0/">
   <Comment>Example 4 (pseudo-CLIF). 
     (cl:text O1 
       (forall (x y) (if (and (P x y) (P y x)) (= x y)))

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="../relaxng/xcl2b.rnc"?>
-<Construct xmlns="http://iso-commonlogic.org/xcl2">
-  <Prefix pre="lmod" iri="http://ruleml.org/xcl2/exa/algebra/leftodule"/>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<Construct xmlns="http://purl.org/xcl/2.0/">
+  <Prefix pre="lmod" iri="http://ruleml.org/xcl2/exa/algebra/left-module"/>
   <Prefix pre="rng" iri="http://ruleml.org/xcl2/exa/ringoids/ring"/>
   <Prefix pre="abg" iri="http://ruleml.org/xcl2/exa/magma/abelian-group"/>
   <Comment>
-    <clodule 
+    <cl-module 
       xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://stl.mie.utoronto.ca/ColoreSchema">
       <head>
         <version>1.0</version>
         <date>2014-01-01</date>
-        <description>Axioms for Leftodules</description>
+        <description>Axioms for Left Modules</description>
         <keyword>algebra</keyword>
         <keyword>module</keyword>
         <source/>
@@ -18,10 +18,10 @@
         <parentOntology/>
       </head>
       <additionalInformation/>
-    </clodule>
+    </cl-module>
     <clif>
       (txt 
-        (prefix 'lmod' 'http://ruleml.org/xcl2/exa/algebra/module')
+        (prefix 'lmod' 'http://ruleml.org/xcl2/exa/algebra/left-module')
         (prefix 'rng' 'http://ruleml.org/xcl2/exa/ringoids/ring')
         (prefix 'abg' 'http://ruleml.org/xcl2/exa/magma/abelian-group')
         (ttl "lmod:.xcl2" 
