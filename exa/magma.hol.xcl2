@@ -82,7 +82,7 @@
           </clif>
         </Comment>
         <Name>m</Name>
-        <Equivalent>
+        <Biconditional>
           <Atom>
             <Name cri="mag:#Magma"/>
             <Name>m</Name>
@@ -100,7 +100,7 @@
               </Apply>
             </Apply>
           </Atom>
-        </Equivalent>
+        </Biconditional>
       </Forall>
       <Forall>
         <Comment>
@@ -117,7 +117,7 @@
         </Comment>
         <Name>m</Name>
         <Name>D</Name>
-        <Equivalent>
+        <Biconditional>
           <Atom>
             <Apply>
               <Name cri="mag:#Magma"/>
@@ -139,7 +139,7 @@
               <Name>m</Name>
             </Atom>
           </And>
-        </Equivalent>
+        </Biconditional>
       </Forall>
       <Forall>
         <Comment>
@@ -159,7 +159,7 @@
         </Comment>
         <Name>op</Name>
         <Name>s</Name>
-        <Equivalent>
+        <Biconditional>
           <Atom>
             <Apply>
               <Name cri="mag:#BinaryTotalOn"/>
@@ -195,7 +195,7 @@
               </Atom>
             </Forall>
           </And>
-        </Equivalent>
+        </Biconditional>
       </Forall>
     </Construct>
   </Titling>

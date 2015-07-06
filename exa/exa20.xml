@@ -68,7 +68,7 @@
           <Comment>∀x∀y((P x y) ↔ ∀t((P y y t) → (P x y t))</Comment>
           <Name>endurant part</Name>
           <Name>endurant whole</Name>
-          <Equivalent>
+          <Biconditional>
             <Atom>
               <Name>Parthood</Name>
               <Name>endurant part</Name>
@@ -91,7 +91,7 @@
                 </Atom>
               </Implies>
             </Forall>
-          </Equivalent>
+          </Biconditional>
         </Forall>
         <Import>
           <Comment>(imports mereology)</Comment>

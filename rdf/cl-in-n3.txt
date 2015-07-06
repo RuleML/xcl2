@@ -1,0 +1,150 @@
+@prefix : <http://purl.org/cl-metamodel/2.0/> .
+@prefix ex: <http://example.com/vocab/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pub1: <http://example.com/pub1#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix xsi: <http://www.w3.org/2001/XMLSchema-instance#> .
+
+pub1:sent10 a :Equal ;
+    :leftArgument "15"^^xsd:nonNegativeInteger ;
+    :rightArgument [ a :Name ;
+            :symbol "a" ] .
+
+pub1:sent11 a :Exists ;
+    :bindings ( [ a :Name ;
+                :symbol "x" ] [ a :Name ;
+                :symbol "y" ] ) ;
+    :body pub1:sent9 .
+
+pub1:sent12 a :Forall ;
+    :bindings ( [ a :Name ;
+                :symbol "x" ] [ a :Name ;
+                :symbol "y" ] ) ;
+    :body pub1:sent8 .
+
+pub1:sent13 a :Biconditional ;
+    :leftComponent pub1:sent6 ;
+    :rightComponent pub1:sent7 .
+
+pub1:sent14 a :Implies ;
+    :if pub1:sent4 ;
+    :then pub1:sent5 .
+
+pub1:sent15 a :Not ;
+    :component pub1:sent3 .
+
+pub1:sent16 a :Or ;
+    :disjuncts ( pub1:sent2 ) .
+
+pub1:stmt1 a :Schema ;
+    :bindings ( [ a :Marker ;
+                :symbol "...z" ] ) ;
+    :body pub1:sent17 .
+
+pub1:stmt2 a :Titling ;
+    :body pub1:txtd ;
+    :title [ a :Name ;
+            :symbol "txt1" ] .
+
+pub1:stmt3 a :Out ;
+    :arguments ( [ a :Name ;
+                :symbol "x" ] [ a :Name ;
+                :symbol "y" ] [ a :Name ;
+                :symbol "z" ] ) .
+
+pub1:stmt4 a :In ;
+    :arguments ( [ a :Name ;
+                :symbol "a" ] [ a :Name ;
+                :symbol "b" ] [ a :Name ;
+                :symbol "c" ] ) .
+
+pub1:txta a :Construct ;
+    :components ( pub1:sent ) .
+
+pub1:txtb a :Restrict ;
+    :body pub1:txtc ;
+    :domain [ a :Name ;
+            :symbol "M" ] .
+
+pub1:sent a :Atom ;
+    :arguments ( [ a :Name ;
+                :symbol "x" ] pub1:term2 ) ;
+    :predicate ex:P .
+
+pub1:sent0 a :Atom ;
+    :arguments ( [ a :Name ;
+                :symbol "g" ] pub1:term1 ) ;
+    :predicate ex:R .
+
+pub1:sent1 a :Atom ;
+    :arguments () ;
+    :predicate [ a :Name ;
+            :symbol "P" ] .
+
+pub1:sent17 a :And ;
+    :conjuncts ( pub1:sent1 ) .
+
+pub1:sent2 a :Atom ;
+    :arguments () ;
+    :predicate [ a :Name ;
+            :symbol "P" ] .
+
+pub1:sent3 a :Atom ;
+    :arguments () ;
+    :predicate [ a :Name ;
+            :symbol "Q" ] .
+
+pub1:sent4 a :Atom ;
+    :arguments () ;
+    :predicate [ a :Name ;
+            :symbol "P" ] .
+
+pub1:sent5 a :Atom ;
+    :arguments () ;
+    :predicate [ a :Name ;
+            :symbol "Q" ] .
+
+pub1:sent6 a :Atom ;
+    :arguments () ;
+    :predicate [ a :Name ;
+            :symbol "Q" ] .
+
+pub1:sent7 a :Atom ;
+    :arguments () ;
+    :predicate [ a :Name ;
+            :symbol "T" ] .
+
+pub1:sent8 a :Atom ;
+    :arguments ( [ a :Name ;
+                :symbol "x" ] [ a :Name ;
+                :symbol "y" ] ) ;
+    :predicate [ a :Name ;
+            :symbol "T" ] .
+
+pub1:sent9 a :Atom ;
+    :arguments ( [ a :Name ;
+                :symbol "x" ] [ a :Name ;
+                :symbol "y" ] ) ;
+    :predicate [ a :Name ;
+            :symbol "T" ] .
+
+pub1:term1 a :Apply ;
+    :arguments ( [ a :Name ;
+                :symbol "v" ] ) ;
+    :operator [ a :Name ;
+            :symbol "f" ] .
+
+pub1:term2 a :Apply ;
+    :operator [ a :Name ;
+            :symbol "a" ] .
+
+pub1:txtc a :Import ;
+    :title [ a :Name ;
+            :symbol "N" ] .
+
+pub1:txtd a :Construct ;
+    :components ( pub1:sent0 ) .
+

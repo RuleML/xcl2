@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<Construct xmlns="http://purl.org/xcl/2.0/">
+  <Prefix pre="op" iri="http://ruleml.org/cl/exa/operator"/>
+  <Prefix pre="bin" iri="http://ruleml.org/cl/exa/operator/binary"/>
+  <Prefix pre="set" iri="http://ruleml.org/cl/exa/set"/>
+  <Comment>
+    <Comment>
+      A total binary operator on some set s is an operator that satisfies the closure property
+      when applied to term sequences of length two.
+      A set is an entity whose unary component of its relationship is equal to its membership.
+      See the set ontology.
+      In the HOL approach, the domain of discourse includes not only the elements in the set,
+      but also the operation itself.
+      Binary totality (closure) is satisfied iff
+        ( s (op x y) ) whenever (s x) and (s y)
+      Entities that optionally could also belong to the domain of discourse are:
+        the class of sets, set:#Set
+        the class of operations that are total as binary operations on a set defined by a relation S, 
+          (op:#BinaryTotalOn S) 
+    </Comment>    
+    <cl-module 
+      xmlns:xsd="http://www.w3.org/2001/XMLSchema" >
+      <head xmlns="http://stl.mie.utoronto.ca/ColoreSchema">
+        <version>1.0</version>
+        <date>2014-01-07</date>
+        <description>HOL Axioms for Total Binary Operations</description>
+        <keyword>total</keyword>
+        <keyword>binary</keyword>
+        <keyword>operation</keyword>
+        <source/>
+        <author>Tara Athan</author>
+        <parentOntology/>
+      </head>
+      <additionalInformation/>
+    </cl-module>
+    <clif>
+      (txt
+        (pre op "http://ruleml.org/cl/exa/operator")
+        (pre bin "http://ruleml.org/cl/exa/operator/binary")
+        (pre set "http://ruleml.org/cl/exa/set")
+        (ttl "bin:total/hol/clif" 
+          (txt
+            (forall (op (s "set:#Set"))
+              (iff   
+                (("op:#BinaryTotalOn" s) op)
+                (and
+                  ("op:#Operator" op)
+                  (forall ((x s) (y s))
+                    (s (op x y))
+                ) )
+            ) )      
+            (forall (op)
+              (iff   
+                ("op:#BinaryTotal" op)
+                (and
+                  ("op:#Operator" op)
+                  (forall (x y)
+                    (exists (z)
+                      (= z (op x y))
+                ) ) )
+            ) )      
+      ) ) )    
+    </clif>
+  </Comment>
+  <Titling>
+    <Comment>(ttl "bin:total/hol/clif" ...)</Comment>
+    <Name cri="bin:total/hol/xcl2"/>
+    <Construct>
+      <Comment>
+        <clif>(txt ...)</clif>
+      </Comment>
+      <Forall>
+        <Comment>
+          <Comment>Definition of class of operators that are total in binary mode.</Comment>
+          <clif>
+            (forall (op (s "set:#Set")) ...)
+          </clif>
+        </Comment>
+        <Name>op</Name>
+        <Name>
+          <type><Name cri="set:#Set"/></type>
+          <symbol>s</symbol>
+        </Name>
+        <Biconditional>
+          <Comment>
+            <clif>
+              (iff ...)
+            </clif>
+          </Comment>
+          <Atom>
+            <Comment>
+              <clif>
+                (("op:#BinaryTotalOn" s) op)
+              </clif>
+            </Comment>
+            <Apply>
+              <Name cri="op:#BinaryTotalOn"/>
+              <Name>s</Name>
+            </Apply>
+            <Name>op</Name>
+          </Atom>
+          <And>
+          <Atom>
+            <Comment><clif>("op:#Operator" op</clif></Comment>
+            <Name cri="op:#Operator"/>
+            <Name>op</Name>
+          </Atom>  
+          <Forall>
+            <Comment>
+              <clif>
+                (forall ((x s) (y s)) ...)
+              </clif>
+            </Comment>
+            <Name>
+              <type><Name>s</Name></type>
+              <symbol>x</symbol>
+            </Name>          
+            <Name>
+              <type><Name>s</Name></type>
+              <symbol>y</symbol>
+            </Name>    
+            <Atom>
+              <Comment>
+                <clif>
+                  (s (op x y))
+                </clif>
+              </Comment>
+              <Name>s</Name>
+              <Apply>
+                <Name>op</Name>
+                <Name>x</Name>
+                <Name>y</Name>
+              </Apply>
+            </Atom>
+          </Forall>
+          </And>
+        </Biconditional>
+      </Forall>
+      <Forall>
+        <Comment>
+          <Comment>Definition of class of operators that are total in binary mode.</Comment>
+          <clif>
+            (forall (op) ...)
+          </clif>
+        </Comment>
+        <Name>op</Name>
+        <Biconditional>
+          <Comment>
+            <clif>
+              (iff ...)  
+            </clif>
+          </Comment>
+          <Atom>
+            <Comment>
+              <clif>
+                ("op:#BinaryTotal" op)
+              </clif>
+            </Comment>
+            <Name cri="op:#BinaryTotal"/>
+            <Name>op</Name>
+          </Atom>
+          <And>
+            <Comment><clif>(and ...)</clif></Comment>
+            <Atom>
+              <Comment><clif>("op:#Operator" op</clif></Comment>
+              <Name cri="op:#Operator"/>
+              <Name>op</Name>
+            </Atom>  
+            <Forall>
+            <Comment>
+              <clif>
+                (forall (x y) ...)
+              </clif>
+            </Comment>
+            <Name>x</Name>
+            <Name>y</Name>
+            <Exists>
+              <Comment>
+                <clif>
+                  (exists (z) ...)
+                </clif>
+              </Comment>
+              <Name>z</Name>
+              <Equal>
+                <Comment>
+                  <clif>
+                    (= z (op x y))
+                  </clif>
+                </Comment>
+                <Name>z</Name>
+                <Apply>
+                  <Name>op</Name>
+                  <Name>x</Name>
+                  <Name>y</Name>
+                </Apply>
+              </Equal>
+            </Exists>
+          </Forall>
+          </And>  
+        </Biconditional>        
+      </Forall>
+    </Construct>
+  </Titling>
+</Construct>

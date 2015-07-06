@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules xmlns="http://purl.oclc.org/dsdl/nvdl/ns/structure/1.0"
+  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">
+  <namespace ns="http://www.w3.org/1999/xhtml">
+    <validate schema="http://www.thaiopensource.com/relaxng/xhtml/xhtml-strict.rng"/>
+  </namespace>
+  <namespace ns="http://purl.org/xcl/2.0/">
+    <validate schema="../relaxng/xcl2b.rnc" schemaType="application/relax-ng-compact-syntax"/>
+
+  </namespace>
+  <anyNamespace>
+    <allow/>
+  </anyNamespace>
+
+
+</rules>

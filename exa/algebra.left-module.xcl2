@@ -82,7 +82,7 @@
       <Import>
         <Name cri="abg:.xcl2"/>
       </Import>
-      <Equivalent>
+      <Biconditional>
         <Comment>(iff ...)</Comment>
         <Atom>
           <Comment>("lmod:#module" m)</Comment>
@@ -353,7 +353,7 @@
             </And>
           </Exists>
         </And>
-      </Equivalent>
+      </Biconditional>
     </Construct>
   </Titling>
 </Construct>

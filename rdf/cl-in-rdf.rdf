@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns="http://purl.org/cl-metamodel/2.0/" xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:ex="http://example.com/vocab/" xmlns:pub1="http://example.com/pub1#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance#"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xml:base="http://example.com/pub1">
+  <Construct rdf:ID="txta">
+    <components rdf:parseType="Collection">
+      <Atom rdf:ID="sent">
+        <predicate rdf:resource="http://example.com/vocab/P"/>
+        <arguments rdf:parseType="Collection">
+          <Name>
+            <symbol>x</symbol>
+          </Name>
+          <Apply rdf:ID="term2">
+            <operator>
+              <Name>
+                <symbol>a</symbol>
+              </Name>
+            </operator>
+          </Apply>
+        </arguments>
+      </Atom>
+    </components>
+  </Construct>
+  <Restrict rdf:ID="txtb">
+    <domain>
+      <Name>
+        <symbol>M</symbol>
+      </Name>
+    </domain>
+    <body>
+      <Import rdf:ID="txtc">
+        <title>
+          <Name>
+            <symbol>N</symbol>
+          </Name>
+        </title>
+      </Import>
+    </body>
+  </Restrict>
+  <In rdf:ID="stmt4">
+    <arguments rdf:parseType="Collection">
+      <Name>
+        <symbol>a</symbol>
+      </Name>
+      <Name>
+        <symbol>b</symbol>
+      </Name>
+      <Name>
+        <symbol>c</symbol>
+      </Name>
+    </arguments>
+  </In>
+  <Out rdf:ID="stmt3">
+    <arguments rdf:parseType="Collection">
+      <Name>
+        <symbol>x</symbol>
+      </Name>
+      <Name>
+        <symbol>y</symbol>
+      </Name>
+      <Name>
+        <symbol>z</symbol>
+      </Name>
+    </arguments>
+  </Out>
+  <Titling rdf:ID="stmt2">
+    <title>
+      <Name>
+        <symbol>txt1</symbol>
+      </Name>
+    </title>
+    <body>
+      <Construct rdf:ID="txtd">
+        <components rdf:parseType="Collection">
+          <Atom rdf:ID="sent0">
+            <predicate rdf:resource="http://example.com/vocab/R"/>
+            <arguments rdf:parseType="Collection">
+              <Name>
+                <symbol>g</symbol>
+              </Name>
+              <Apply rdf:ID="term1">
+                <operator>
+                  <Name>
+                    <symbol>f</symbol>
+                  </Name>
+                </operator>
+                <arguments rdf:parseType="Collection">
+                  <Name>
+                    <symbol>v</symbol>
+                  </Name>
+                </arguments>
+              </Apply>
+            </arguments>
+          </Atom>
+        </components>
+      </Construct>
+    </body>
+  </Titling>
+  <Schema rdf:ID="stmt1">
+    <bindings rdf:parseType="Collection">
+      <Marker>
+        <symbol>...z</symbol>
+      </Marker>
+    </bindings>
+    <body>
+      <And rdf:ID="sent17">
+        <conjuncts rdf:parseType="Collection">
+          <Atom rdf:ID="sent1">
+            <predicate>
+              <Name>
+                <symbol>P</symbol>
+              </Name>
+            </predicate>
+            <arguments rdf:parseType="Collection"/>
+          </Atom>
+        </conjuncts>
+      </And>
+    </body>
+  </Schema>
+  <Or rdf:ID="sent16">
+    <disjuncts rdf:parseType="Collection">
+      <Atom rdf:ID="sent2">
+        <predicate>
+          <Name>
+            <symbol>P</symbol>
+          </Name>
+        </predicate>
+        <arguments rdf:parseType="Collection"/>
+      </Atom>
+    </disjuncts>
+  </Or>
+  <Not rdf:ID="sent15">
+    <component>
+      <Atom rdf:ID="sent3">
+        <predicate>
+          <Name>
+            <symbol>Q</symbol>
+          </Name>
+        </predicate>
+        <arguments rdf:parseType="Collection"/>
+      </Atom>
+    </component>
+  </Not>
+  <Implies rdf:ID="sent14">
+    <if>
+      <Atom rdf:ID="sent4">
+        <predicate>
+          <Name>
+            <symbol>P</symbol>
+          </Name>
+        </predicate>
+        <arguments rdf:parseType="Collection"/>
+      </Atom>
+    </if>
+    <then>
+      <Atom rdf:ID="sent5">
+        <predicate>
+          <Name>
+            <symbol>Q</symbol>
+          </Name>
+        </predicate>
+        <arguments rdf:parseType="Collection"/>
+      </Atom>
+    </then>
+  </Implies>
+  <Biconditional rdf:ID="sent13">
+    <leftComponent>
+      <Atom rdf:ID="sent6">
+        <predicate>
+          <Name>
+            <symbol>Q</symbol>
+          </Name>
+        </predicate>
+        <arguments rdf:parseType="Collection"/>
+      </Atom>
+    </leftComponent>
+    <rightComponent>
+      <Atom rdf:ID="sent7">
+        <predicate>
+          <Name>
+            <symbol>T</symbol>
+          </Name>
+        </predicate>
+        <arguments rdf:parseType="Collection"/>
+      </Atom>
+    </rightComponent>
+  </Biconditional>
+  <Forall rdf:ID="sent12">
+    <bindings rdf:parseType="Collection">
+      <Name>
+        <symbol>x</symbol>
+      </Name>
+      <Name>
+        <symbol>y</symbol>
+      </Name>
+    </bindings>
+    <body>
+      <Atom rdf:ID="sent8">
+        <predicate>
+          <Name>
+            <symbol>T</symbol>
+          </Name>
+        </predicate>
+        <arguments rdf:parseType="Collection">
+          <Name>
+            <symbol>x</symbol>
+          </Name>
+          <Name>
+            <symbol>y</symbol>
+          </Name>
+        </arguments>
+      </Atom>
+    </body>
+  </Forall>
+  <Exists rdf:ID="sent11">
+    <bindings rdf:parseType="Collection">
+      <Name>
+        <symbol>x</symbol>
+      </Name>
+      <Name>
+        <symbol>y</symbol>
+      </Name>
+    </bindings>
+    <body>
+      <Atom rdf:ID="sent9">
+        <predicate>
+          <Name>
+            <symbol>T</symbol>
+          </Name>
+        </predicate>
+        <arguments rdf:parseType="Collection">
+          <Name>
+            <symbol>x</symbol>
+          </Name>
+          <Name>
+            <symbol>y</symbol>
+          </Name>
+        </arguments>
+      </Atom>
+    </body>
+  </Exists>
+  <Equal rdf:ID="sent10">
+    <leftArgument rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"
+      >15</leftArgument>
+    <rightArgument>
+      <Name>
+        <symbol>a</symbol>
+      </Name>
+    </rightArgument>
+  </Equal>
+</rdf:RDF>

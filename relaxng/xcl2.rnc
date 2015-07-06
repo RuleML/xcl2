@@ -1,48 +1,114 @@
 default namespace = "http://purl.org/xcl/2.0/"
 
-## Common Logic Syntax XCL2 (Draft)
+
+## Common Logic Syntax XCL Version 2.0
+
+## Root Elements
+## The root element of a purely XCL document
+## may be cl:Document or any element matching the
+## clText, clStatement or clSentence patterns.
 start |= clDocument
 start |= clText
 start |= clStatement
 start |= clSentence
-clDocument = element Document { Document.type}
-Document.type = clCommon, clText* 
+
+## Documents
+
+## A cl:Dcoument element provides a semantically-neutral
+## root element that allows an XML document to contain
+## multiple Common Logic texts.
+clDocument = element Document { Document.type }
+Document.type = clCommentable, clText*
 
 ## Texts
 clText |= Construct
 clText |= Restrict
 clText |= Import
 
-## -Text Constructions
+##    -Text Constructions
+
+## A cl:Construct element manifests a text construction
+## (TextConstruction) of the abstract syntax.
 Construct = element Construct { Construct.type }
-Construct.type = clCommon, (clText | clStatement | clSentence)*
+Construct.type =
+  clCommentable,
+  
+  ## the arguments
+  (clText | clStatement | clSentence)*
 
-## -Domain Restrictions
+##    -Domain Restrictions 
+
+## A cl:Restrict element manifests a domain restriction
+## text (DomainRestriction) of the abstract syntax.
 Restrict = element Restrict { Restrict.type }
-Restrict.type = clCommon, clTerm, clText?
+Restrict.type =
+  clCommentable,
+  
+  ## the local universe of discourse 
+  clTerm,
+  
+  ## the body text 
+  clText
 
-## -Imports
+##    -Imports 
+
+## A cl:Import element manifests an importation
+## text (Importation) of the abstract syntax.
 Import = element Import { Import.type }
-Import.type = clCommon, Name
+Import.type =
+  clCommentable,
+  
+  ## the name 
+  Name
 
 ## Statements
-clStatement |= Out
 clStatement |= In
+clStatement |= Out
 clStatement |= Titling
 clStatement |= Schema
 
-## -Discourse Statements
-Out = element Out { Discourse.type }
+##    -Discourse Statements 
+
+## A cl:In element manifests an in-discourse
+## statement (DiscourseStatement) of the abstract syntax.
 In = element In { Discourse.type }
-Discourse.type = clCommon, clTerm+
 
-## -Text Titlings
+## A cl:Out element manifests an out-of-discourse
+## statement (DiscourseStatement) of the abstract syntax.
+Out = element Out { Discourse.type }
+Discourse.type =
+  clCommentable,
+  
+  ## the sequence of terms 
+  clTerm+
+
+##    -Text Titlings 
+
+## A cl:Titling element manifests a titling
+## statement (Titling) of the abstract syntax.
 Titling = element Titling { Titling.type }
-Titling.type = clCommon, Name, clText
+Titling.type =
+  clCommentable,
+  
+  ## the name 
+  Name,
+  
+  ## the text 
+  clText
 
-## Schemas
+##    -Schemas 
+
+## A cl:Schema element manifests a schema
+## statement (Schema) of the abstract syntax.
 Schema = element Schema { Schema.type }
-Schema.type = clCommon, Marker+, (Schema | clSentence) 
+Schema.type =
+  clCommentable,
+  
+  ## the binding marker sequence 
+  Marker+,
+  
+  ## the schematified schema or sentence
+  (Schema | clSentence)
 
 ## Sentences
 clSentence |= Atom
@@ -51,102 +117,260 @@ clSentence |= And
 clSentence |= Or
 clSentence |= Not
 clSentence |= Implies
-clSentence |= Equivalent
+clSentence |= Biconditional
 clSentence |= Forall
 clSentence |= Exists
 
-## -Atomic Formulas
+##    -Atomic Formulas 
+
+## A cl:Atom element manifests an atomic
+## sentence (Atomic) of the abstract syntax.
 Atom = element Atom { Atom.type }
-Atom.type = clCommon, clTerm, clTermSequence
+Atom.type =
+  clCommentable,
+  
+  ## the operator 
+  clTerm,
+  
+  ## the argument sequence 
+  clTermSequence
 
-## -Equals
+##    -Equals
+
+## A cl:Equal element manifests an equation
+## sentence (Id) of the abstract syntax.
 Equal = element Equal { Equal.type }
-Equal.type = clCommon, clTerm, clTerm
+Equal.type =
+  clCommentable,
+  
+  ## the arguments 
+  clTerm,
+  clTerm
 
-## -Connectives
+##    -Connectives
+
+## A cl:And element manifests a conjunction
+## sentence (Conj) of the abstract syntax.
 And = element And { AndOr.type }
+
+## A cl:Or element manifests a disjunction
+## sentence (Disj) of the abstract syntax.
 Or = element Or { AndOr.type }
-AndOr.type = clCommon, clSentence*
+AndOr.type =
+  clCommentable,
+  
+  ## the component sentences 
+  clSentence*
+
+## A cl:Not element manifests an negation
+## sentence (Neg) of the abstract syntax.
 Not = element Not { Not.type }
-Not.type = clCommon, clSentence
+Not.type =
+  clCommentable,
+  
+  ## the negated sentence 
+  clSentence
+
+## A cl:Implies element manifests an implication
+## sentence (Cond) of the abstract syntax.
 Implies = element Implies { Implies.type }
-Implies.type = clCommon, clSentence, clSentence
-Equivalent = element Equivalent { Equivalent.type }
-Equivalent.type = clCommon, clSentence, clSentence
+Implies.type =
+  clCommentable,
+  
+  ## the premise (antecedent) sentence
+  clSentence,
+  
+  ## the conclusion (consequent) sentence 
+  clSentence
 
-## -Quantifications
-Forall = element Forall { Quantifier.type }
-Exists = element Exists { Quantifier.type }
-Quantifier.type = clCommon, Name+, clSentence
+## A cl:Biconditional element manifests a biconditional
+## sentence (Bicond) of the abstract syntax.
+Biconditional = element Biconditional { Biconditional.type }
+Biconditional.type =
+  clCommentable,
+  
+  ## the two component sentences 
+  clSentence,
+  clSentence
 
-## Term Sequences
-clTermSequence &= clTerm*
-clTermSequence &= Marker*
+##    -Quantifications 
 
-## Terms
+## A cl:Forall element manifests a universally quantified
+## sentence (UQuant) of the abstract syntax.
+Forall = element Forall { Forall.type }
+
+## A cl:Forall element manifests a existentially quantified
+## sentence (EQuant) of the abstract syntax.
+Exists = element Exists { Exists.type }
+Forall.type = Quantifier.type
+Exists.type = Quantifier.type
+Quantifier.type =
+  clCommentable,
+  
+  ## the binding sequence 
+  Name+,
+  
+  ## the quantified sentence
+  clSentence
+
+## Term Sequences 
+clTermSequence = (clTerm | Marker)*
+
+## Terms 
 clTerm |= Apply
 clTerm |= Name
 
-## -Functional Terms
-Apply = element Apply { Apply.type }
-Apply.type = clCommon, clTerm, clTermSequence
+##    -Functional Terms 
 
-## -Names
+## A cl:Apply element manifests a FunctionalTerm 
+## of the abstract syntax.
+Apply = element Apply { Apply.type }
+Apply.type =
+  clCommentable,
+  
+  ## the operator 
+  clTerm,
+  
+  ## the argument sequence 
+  clTermSequence
+
+##    -Names 
+
+## A cl:Name element manifests a Name (V) of the 
+## abstract syntax. 
+## The actual symbol of the Name, the entity
+## that belongs to the lexicon, is obtained by mapping the lexical
+## value of the cl:Name element into the value space of a
+## datatype.
+## The xsd:string datatype is used when the lexical value belongs to
+## the lexical space of xsd:string.
+## Otherwise the datatype rdf:XMLLiteral is used.
+## The lexical value is the content of the
+## symbol child element, if present; otherwise it is the content
+## of the cl:Name element.
 Name = element Name { Name.type }
-Name.type |= clCommon, cri.attrib
-Name.type |= clCommon, symbol
-Name.type |= key.attrib?, (text & anyElement*)
+Name.type |= clCommon, (cri.attrib | symbol)
+Name.type |= text & anyElement*
 symbol = element symbol { symbol.type }
 symbol.type = text & anyElement*
 
 ## Constrained Names in Quantifiers
-Quantifier.type |= clCommon, Name-constrained+, clSentence
+
+## A cl:Name element containing one or more cl:type
+## children is a constrained name. It has no explicit
+## counterpart in the abstract syntax. 
+## A quantifier whose binding sequence contains
+## one or more constrained names is syntactic sugar
+## for a quantifier whose binding sequence contains
+## only unconstrained names, and whose quantified sentence
+## is a modification of the original quantified sentence as follows:
+## - if the constrained name is universally quantified, then the
+##   quantified sentence is replaced by an implication where the
+##   if part of the implication is an atomic sentence
+##   asserting the membership of name denotation in the relation
+##   associated with the constraining type, and the
+##   then part is the original quantified sentence.
+## - if the constrained name is existentially quantified, then the
+##   quantified sentence is replaced by a conjunction
+##   of two sentences where
+##   one conjunct is an atomic sentence
+##   asserting the membership of name denotation in the relation
+##   associated with the constraining type, and the
+##   other conjunct is the original quantified sentence.
+Quantifier.type |= clCommon, (Name | Name-constrained)*, clSentence
 Name-constrained = element Name { Name-constrained.type }
-Name-constrained.type |= clCommon, type*, cri.attrib
-Name-constrained.type |= clCommon, type*, symbol
-Name-constrained.type |= key.attrib?, (text & anyElement*)
+Name-constrained.type = clCommon, type+, (cri.attrib | symbol)
 type = element type { type.type }
 type.type = Name
 
-## Data
+##    -Data
+
+## A cl:Data element manifests a Name (V) of the abstract syntax
+## which is given a fixed interpretation.
+## The fixed interpretation is specified according to a datatype 
+## mapping applied to the lexical value. 
+## The lexical value is the content of the
+## symbol child element, if present; otherwise it is the content
+## of the cl:Data element.
+## If the datatype attribute is present, then the attribute value
+## as an IRI defines the datatype mapping.
+## If the datatype attribute is absent, then the xsd:string
+## datatype is used when the lexical value belongs to the
+## lexical space of xsd:string,
+## otherwise the datatype rdf:XMLLiteral is used.
+## It is a syntactic error if the lexical value does not belong
+## to the lexical space of the indicated datatype, even if the
+## XML document is valid according to this schema.
 clTerm |= Data
 Data = element Data { Data.type }
 Data.type |= clCommon, symbol-data
-Data.type |= key.attrib?, datatype.attrib?, (text & anyElement*)
+Data.type |= datatype.attrib?, (text & anyElement*)
 symbol-data = element symbol { symbol-data.type }
 symbol-data.type = datatype.attrib?, (text & anyElement*)
 datatype.attrib = attribute datatype { curieOrAbsIRI.datatype }
 
 ## Sequence Markers
-Marker = element Marker { Marker.type }
-Marker.type |=  clCommon, symbol
-Marker.type |=  key.attrib?, (text & anyElement*)
 
-## The clCommon pattern: Prefixes, Comments, Keys
-clCommon &= key.attrib?
-clCommon &= Prefix*
-clCommon &= Comment?
-clCommon &= base.attrib?
+## A cl:Marker element manifests a sequence marker (SMark) of the 
+## abstract syntax. The actual symbol of the sequence marker,
+## the entity that belongs to the lexicon,
+## is obtained by mapping the lexical
+## value of the cl:Marker element into the value space of a
+## datatype.
+## The xsd:string datatype is used when the lexical value belongs to
+## the lexical space of xsd:string.
+## Otherwise the datatype rdf:XMLLiteral is used.
+## The lexical value is the content of the
+## symbol child element, if present; otherwise it is the content
+## of the cl:Marker element.
+Marker = element Marker { Marker.type }
+Marker.type |= clCommon, symbol
+Marker.type |= text & anyElement*
+
+## The clCommon and clCommentable patterns: 
+## Prefixes, Comments, Keys
+clCommentable = clCommon, label?, Comment*
+clCommon = base.attrib?, Prefix*
+
+## The cl:Prefix element is a syntactic mechanism for 
+## abbreviating IRIs, and does not correspond to any explicit
+## part of the abstract syntax. 
+## All CURIEs that appear as XCL attribute values should be expanded
+## to IRIs according to the prefix definitions prior to mapping into
+## the abstract syntax.
+## XML namespace definitions must not be considered to define
+## CURIE prefixes.
+## Prefix definitions apply within the scope of the parent element
+## and its descendants.
+## In the case of conflicting prefix definitions:
+## prefix definitions that are children of an element E take precedence
+##   over prefix definitions that are children of ancestors of E;
+## prefix definitions take precedence over their preceding siblings. 
 Prefix = element Prefix { Prefix.type }
 Prefix.type = pre.attrib, iri.attrib
 pre.attrib = attribute pre { pre.datatype }
 pre.datatype = xsd:NCName?
+
+## A cl:Comment element manifests a Comment of the abstract syntax.
+## The lexical value of a cl:Comment element is the element content.
+## Attributes may be used to specify a datatype to be used to map
+## the lexical value into the value space of the datatype,
+## providing the Comment of the abstract syntax as “a piece of data”.
 Comment =
   element Comment {
     attribute * { text }*,
     (text & anyElement*)
   }
+label = key.attrib
 iri.attrib = attribute iri { absIRI.datatype }
-key.attrib = attribute key { curieOrAbsIRI.datatype }
-#key.attrib |= empty
 cri.attrib = attribute cri { curieOrAbsIRI.datatype }
-curieOrAbsIRI.datatype |= curie.datatype
-curieOrAbsIRI.datatype |= absIRI.datatype
+key.attrib = attribute key { curieOrAbsIRI.datatype }
+curieOrAbsIRI.datatype = curie.datatype | absIRI.datatype
 curie.datatype = xsd:string { minLength = "1" pattern = "(([\i-[:]][\c-[:]]*)?:)?.*" }
 absIRI.datatype = xsd:anyURI { pattern = "[\i-[:]][\c-[:]]*:.*" }
-base.attrib = attribute xml:base {xsd:anyURI}
 anyElement =
   element * {
     attribute * { text }*,
     (text & anyElement*)
   }
+base.attrib = attribute xml:base {xsd:anyURI}

@@ -22,7 +22,7 @@
   <Forall>
     <Name>x</Name>
     <Name>y</Name>
-    <Equivalent>
+    <Biconditional>
       <Atom>
         <Name>Reflexive</Name>
         <Name>x</Name>
@@ -32,7 +32,7 @@
         <Name>y</Name>
         <Name>y</Name>
       </Atom>
-    </Equivalent>
+    </Biconditional>
   </Forall>
   <Atom>
     <Name>Reflexive</Name>

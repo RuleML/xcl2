@@ -13,7 +13,7 @@
   <Forall>
     <Name>x</Name>
     <Name>y</Name>
-    <Equivalent>
+    <Biconditional>
       <Atom>
         <Name>whole_of</Name>
         <Name>x</Name>
@@ -24,6 +24,6 @@
         <Name>y</Name>
         <Name>x</Name>
       </Atom>
-    </Equivalent>
+    </Biconditional>
   </Forall>
 </Construct>
