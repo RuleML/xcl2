@@ -2,7 +2,7 @@
 <?xml-model href="../relaxng/xcl2.rnc"?>
 <Construct xmlns="http://purl.org/xcl/2.0/">
   <Comment>Example 32.</Comment>
-  <Schema>
+  <Forall>
     <Marker>X</Marker>
     <Marker>Y</Marker>
     <Forall>
@@ -33,5 +33,5 @@
           </Equal>          
         </Implies>
      </Forall>
-  </Schema>
+  </Forall>
 </Construct>
