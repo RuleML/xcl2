@@ -65,7 +65,6 @@ Import.type =
 clStatement |= In
 clStatement |= Out
 clStatement |= Titling
-clStatement |= Schema
 
 ##    -Discourse Statements 
 
@@ -95,20 +94,6 @@ Titling.type =
   
   ## the text 
   clText
-
-##    -Schemas 
-
-## A cl:Schema element manifests a schema
-## statement (Schema) of the abstract syntax.
-Schema = element Schema { Schema.type }
-Schema.type =
-  clCommentable,
-  
-  ## the binding marker sequence 
-  Marker+,
-  
-  ## the schematified schema or sentence
-  (Schema | clSentence)
 
 ## Sentences
 clSentence |= Atom
@@ -208,7 +193,7 @@ Quantifier.type =
   clCommentable,
   
   ## the binding sequence 
-  Name+,
+  (Name | Marker)+,
   
   ## the quantified sentence
   clSentence
