@@ -1,4 +1,5 @@
 default namespace = "http://purl.org/xcl/2.0/"
+namespace xs = "http://www.w3.org/2001/XMLSchema"
 
 
 ## Common Logic Syntax XCL Version 2.0
@@ -293,6 +294,62 @@ Data.type |= datatype.attrib?, (text & anyElement*)
 symbol-data = element symbol { symbol-data.type }
 symbol-data.type = datatype.attrib?, (text & anyElement*)
 datatype.attrib = attribute datatype { curieOrAbsIRI.datatype }
+
+## Datatype
+clStatement |= Datatype
+Datatype = element Datatype{ Datatype.type }
+Datatype.type |= clCommentable, cri.attrib, xsdUserDefined.type
+xsdUserDefined.type |= element xs:simpleType { xsdSimpleType.type}
+xsdSimpleType.type |= xsdSimpleDerivation
+xsdSimpleDerivation |= xsdRestriction
+xsdSimpleDerivation |= xsdList
+xsdSimpleDerivation |= xsdUnion
+xsdRestriction |= element xs:restriction { baseAtt?, xsdSimpleRestrictionModel}
+baseAtt = attribute base { xsd:QName}
+xsdSimpleRestrictionModel |= element xs:simpleType { xsdSimpleType.type }?, xsdFacets*
+
+xsdFacets |= xsdMinExclusive
+xsdFacets |= xsdMinInclusive
+xsdFacets |= xsdMaxExclusive
+xsdFacets |= xsdMaxInclusive
+xsdFacets |= xsdTotalDigits
+xsdFacets |= xsdFractionDigits
+xsdFacets |= xsdLength
+xsdFacets |= xsdMinLength
+xsdFacets |= xsdMaxLength
+xsdFacets |= xsdEnumeration
+xsdFacets |= xsdWhiteSpace
+xsdFacets |= xsdPattern
+
+xsdFacet |= attribute value { xsd:string}
+
+xsdMinExclusive |= element xs:minExclusive { xsdFacet }
+xsdMinInclusive |= element xs:maxExclusive { xsdFacet }
+xsdMaxExclusive |= element xs:minInclusive { xsdFacet }
+xsdMaxInclusive |= element xs:maxInclusive { xsdFacet }
+
+xsdNumFacet |= attribute value { xsd:nonNegativeInteger }
+xsdPosNumFacet |= attribute value { xsd:positiveInteger }
+xsdTotalDigits |= element xs:totalDigits { xsdPosNumFacet }
+xsdFractionDigits |= element xs:fractionDigits { xsdNumFacet }
+xsdLength |= element xs:length { xsdNumFacet }
+xsdMinLength |= element xs:minLength { xsdNumFacet }
+xsdMaxLength |= element xs:maxLength { xsdNumFacet }
+xsdEnumeration |= element xs:enumeration { xsdFacet }
+xsdWhiteSpace |= element xs:whiteSpace {
+   attribute value { xsd:NMTOKEN "preserve" | "replace" | "collapse" } 
+}
+xsdPattern |= element xs:pattern { xsdFacet }
+
+
+xsdList = element xs:list {
+  attribute itemType { xsd:QName} |
+  element xs:simpleType { xsdSimpleType.type}
+  }
+xsdUnion = element xs:union {
+  attribute memberTypes { xsd:string} |
+  element xs:simpleType { xsdSimpleType.type}+ 
+}
 
 ## Sequence Markers
 

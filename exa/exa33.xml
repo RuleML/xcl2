@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="../relaxng/xcl2.rnc"?>
+<Construct xmlns="http://purl.org/xcl/2.0/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Prefix pre="xs" iri="http://www.w3.org/2001/XMLSchema"/>
+  <Prefix pre="my" iri="http://example.org/mydatatypes#"/>
+  <Comment>Example 33.
+    @@@ need CLIF
+  </Comment>
+  <Construct>
+    <Datatype  cri="my:adult-age">      
+      <xs:simpleType>
+       <xs:restriction base="xs:integer">
+         <xs:minInclusive value="18"/>
+       </xs:restriction>
+    </xs:simpleType>
+    </Datatype>
+    <Datatype cri="my:integerlist">
+      <xs:simpleType>
+        <xs:list itemType="xs:integer"/>
+      </xs:simpleType>
+    </Datatype>
+  </Construct>
+  <Restrict>
+    <Name>Adult Age</Name>
+    <Construct>
+      <Atom>
+        <Name cri="my:adult-age"/>
+        <Data datatype="xs:decimal">19</Data>
+      </Atom>
+      <Not>
+          <Atom>
+            <Name cri="my:adult-age"/>
+            <Data datatype="xs:decimal">16</Data>
+          </Atom>
+        </Not>
+    </Construct>
+  </Restrict>
+  <Restrict>
+    <Name>Integer List</Name>
+    <Construct>
+        <Atom>
+          <Name cri="my:integerlist"/>
+          <Data datatype="my:integerlist">-1 0 16</Data>
+        </Atom>
+      <Atom>
+        <Name cri="my:integerlist"/>
+        <Apply>
+          <Name cri="my:integerlist"/>
+          <Data datatype="xs:integer">-1</Data>
+          <Data datatype="xs:integer">0</Data>
+          <Data datatype="xs:integer">16</Data>          
+        </Apply>
+      </Atom>
+      <Not>
+        <Atom>
+          <Name cri="my:integerlist"/>
+          <Data>16</Data>
+        </Atom>
+      </Not>
+    </Construct>
+  </Restrict>
+</Construct>
